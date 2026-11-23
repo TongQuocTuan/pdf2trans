@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+
+# He dieu hanh / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+
+# Ban dich xuat ra (giữ code, không commit file dịch cá nhân)
+*-dich.md
+*-dich.json

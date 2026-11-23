@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Translator - Dịch Quét Chọn & Song Ngữ (EN -> VI)</title>
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- PDF.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+  <!-- Top Navigation Bar -->
+  <header class="app-header">
+    <div class="brand">
+      <div class="logo-icon"><i class="fa-solid fa-file-pdf"></i></div>
+      <div class="brand-text">
+        <h1>PDF Translator</h1>
+        <span class="badge">EN &rarr; VI</span>
+      </div>
+    </div>
+
+    <!-- Controls & Actions -->
+    <div class="toolbar-center">
+      <!-- Mode Switcher -->
+      <div class="mode-toggle">
+        <button id="btnModeSelect" class="btn-mode active" title="Dịch quét chọn khi bôi đen text">
+          <i class="fa-solid fa-i-cursor"></i> <span>Quét chọn</span>
+        </button>
+        <button id="btnModeBilingual" class="btn-mode" title="Xem song ngữ Tiếng Anh | Tiếng Việt">
+          <i class="fa-solid fa-columns"></i> <span>Song ngữ</span>
+        </button>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- PDF Navigation & Zoom -->
+      <div class="pdf-controls">
+        <button id="btnPrevPage" class="btn-icon" title="Trang trước"><i class="fa-solid fa-chevron-left"></i></button>
+        <span class="page-info">Trang <input type="number" id="pageNumInput" value="1" min="1"> / <span id="pageCount">0</span></span>
+        <button id="btnNextPage" class="btn-icon" title="Trang sau"><i class="fa-solid fa-chevron-right"></i></button>
+        
+        <div class="divider"></div>
+
+        <button id="btnZoomOut" class="btn-icon" title="Thu nhỏ"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+        <span id="zoomLevel">100%</span>
+        <button id="btnZoomIn" class="btn-icon" title="Phóng to"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+      </div>
+    </div>
+
+    <div class="toolbar-right">
+      <!-- File Upload Button -->
+      <label for="pdfFileInput" class="btn-primary" title="Tải file PDF của bạn">
+        <i class="fa-solid fa-upload"></i> <span>Mở file PDF</span>
+      </label>
+      <input type="file" id="pdfFileInput" accept="application/pdf" style="display: none;">
+
+      <!-- Settings / API Key Button -->
+      <button id="btnSettings" class="btn-icon" title="Cấu hình API Engine">
+        <i class="fa-solid fa-gear"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Layout -->
+  <main class="app-main">
+    <!-- Drop Zone / Empty State -->
+    <div id="dropZone" class="drop-zone hidden">
+      <div class="drop-zone-card">
+        <div class="drop-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+        <h2>Kéo & thả file PDF vào đây</h2>
+        <p>Hỗ trợ tài liệu Tiếng Anh để dịch sang Tiếng Việt</p>
+        <button class="btn-primary" onclick="document.getElementById('pdfFileInput').click()">
+          <i class="fa-solid fa-folder-open"></i> Chọn file PDF từ máy
+        </button>
+        <div class="sample-loader">
+          <span>Hoặc</span>
+          <button id="btnLoadSample" class="btn-link">Tải PDF Mẫu để dùng thử</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mode 1: Selection Mode View Container -->
+    <div id="selectionView" class="view-container">
+      <div class="pdf-scroll-wrapper" id="pdfScrollWrapper">
+        <div id="pdfViewer" class="pdf-viewer"></div>
+      </div>
+    </div>
+
+    <!-- Mode 2: Bilingual Side-by-Side View Container -->
+    <div id="bilingualView" class="view-container hidden">
+      <div class="bilingual-split-pane">
+        <!-- Left Panel: Original English PDF -->
+        <div class="pane pane-left">
+          <div class="pane-header">
+            <h3><i class="fa-regular fa-file-lines"></i> Văn bản gốc (English)</h3>
+          </div>
+          <div class="pane-content" id="bilingualPdfWrapper">
+            <div id="bilingualPdfViewer" class="pdf-viewer"></div>
+          </div>
+        </div>
+
+        <!-- Sync Scroll Divider -->
+        <div class="split-divider">
+          <button id="btnToggleSync" class="btn-sync active" title="Tắt/Bật đồng bộ cuộn trang">
+            <i class="fa-solid fa-link"></i>
+          </button>
+        </div>
+
+        <!-- Right Panel: Translated Vietnamese Content -->
+        <div class="pane pane-right">
+          <div class="pane-header">
+            <h3><i class="fa-solid fa-language"></i> Bản dịch (Tiếng Việt)</h3>
+          <div class="pane-header-actions">
+            <button id="btnTranslateAll" class="btn-small"><i class="fa-solid fa-wand-magic-sparkles"></i> Dịch trang này</button>
+            <button id="btnExportMd" class="btn-small" title="Xuất toàn bộ bản dịch đã lưu ra file Markdown"><i class="fa-solid fa-file-arrow-down"></i> Xuất .md</button>
+            <button id="btnExportJson" class="btn-small" title="Xuất toàn bộ bản dịch đã lưu ra file JSON"><i class="fa-solid fa-file-code"></i> Xuất .json</button>
+          </div>
+          </div>
+          <div class="pane-content" id="translationPanel">
+            <div class="empty-translation-state">
+              <i class="fa-solid fa-language"></i>
+              <p>Bản dịch tiếng Việt sẽ tự động xuất hiện ở đây theo từng đoạn tương ứng. Bản dịch được lưu trong trình duyệt theo file PDF, bấm “Duyệt đoạn này” để đánh dấu, dùng nút Xuất .md / .json để tải về.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Selection Popup / Floating Tooltip -->
+  <div id="translationTooltip" class="translation-tooltip hidden">
+    <div class="tooltip-header">
+      <div class="tooltip-title">
+        <i class="fa-solid fa-sparkles"></i> Bản dịch
+      </div>
+      <div class="tooltip-actions">
+        <button id="btnSpeak" class="btn-tooltip-icon" title="Đọc phát âm (EN)"><i class="fa-solid fa-volume-high"></i></button>
+        <button id="btnCopy" class="btn-tooltip-icon" title="Sao chép bản dịch"><i class="fa-regular fa-copy"></i></button>
+        <button id="btnCloseTooltip" class="btn-tooltip-icon" title="Đóng"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+    </div>
+    <div class="tooltip-body">
+      <div class="original-text" id="tooltipOriginalText"></div>
+      <div class="tooltip-divider"></div>
+      <div class="translated-text" id="tooltipTranslatedText">
+        <span class="loading-spinner"><i class="fa-solid fa-circle-notch fa-spin"></i> Đang dịch...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings Modal (Engine & Gemini Key) -->
+  <div id="settingsModal" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-sliders"></i> Cấu hình Translation Engine</h3>
+        <button id="btnCloseModal" class="btn-icon-plain"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="engineSelect">Chọn Engine dịch:</label>
+          <select id="engineSelect" class="form-control">
+            <option value="google">Google Translate Free (Miễn phí / Tốc độ cao)</option>
+            <option value="gemini">Google Gemini AI (Dịch tự nhiên theo ngữ cảnh)</option>
+          </select>
+        </div>
+
+        <div id="geminiKeyGroup" class="form-group hidden">
+          <label for="geminiApiKey">Gemini API Key:</label>
+          <input type="password" id="geminiApiKey" class="form-control" placeholder="Nhập API Key của bạn (AI Studio)">
+          <small class="help-text">Lấy key miễn phí tại Google AI Studio. Key lưu trực tiếp trong trình duyệt.</small>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="btnSaveSettings" class="btn-primary">Lưu thay đổi</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="pdf-viewer.js"></script>
+  <script src="translator.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
