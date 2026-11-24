@@ -120,44 +120,6 @@ các đoạn tra cứu nhanh.
 - Đồng bộ cuộn (chế độ song ngữ): nút link ở giữa hai pane. Tắt đi nếu bạn muốn
   cuộn hai bên độc lập.
 
-## Đưa lên GitHub
-
-Repo này đã xếp sẵn theo chuẩn GitHub: `README.md`, `LICENSE`, `.gitignore`,
-`CHANGELOG.md`, code ở thư mục gốc để GitHub Pages chạy được ngay.
-
-### Đẩy code lên GitHub
-
-```bash
-git init
-git add .
-git commit -m "PDF Translator ver-02"
-git branch -M main
-git remote add origin https://github.com/TongQuocTuan/pdf2trans.git
-git push -u origin main
-```
-
-## Công nghệ
-
-- [PDF.js](https://mozilla.github.io/pdf.js/) 3.11.174 (CDN) — render PDF và trích text.
-- Google Translate qua endpoint `translate.googleapis.com` (không chính thức),
-  fallback MyMemory, Gemini 1.5 Flash qua Generative Language API.
-- Không framework, không build step: HTML + CSS + JavaScript thuần, mở là chạy.
-
-Một vài con số trong code, để ai đọc code khỏi đoán: hàng đợi dịch tối đa 4 request
-cùng lúc, đoạn dài hơn 3.500 ký tự được chia theo câu trước khi dịch, timeout mỗi
-request 15 giây, lỗi thì thử lại tối đa 2 lần, cache dịch lưu tối đa 500 mục.
-
-## Giới hạn đã biết
-
-Tôi ghi rõ ở đây để khỏi mất thời gian thử rồi mới biết:
-
-- Bản dịch lưu trong `localStorage` của trình duyệt, khoảng 5 MB text. Dịch tài liệu
-  dài thì xuất file `.md`/`.json` thường xuyên, đừng để dồn tới lúc đầy mới xuất.
-- Endpoint Google Translate miễn phí không chính thức, có thể bị giới hạn tốc độ.
-- PDF scan (toàn ảnh) không dịch được.
-- Chưa có responsive đầy đủ cho màn hình nhỏ, chưa có bảng thuật ngữ để giữ một từ
-  dịch nhất quán xuyên suốt cả cuốn sách. Hai việc này nằm trong đợt sửa tiếp theo.
-
 ## Tác giả
 
 Tống Quốc Tuấn — [GitHub](https://github.com/TongQuocTuan)
