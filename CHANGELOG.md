@@ -166,3 +166,45 @@ Học từ cây thư mục thật của `naptha/tesseract.js` và
   trên trình duyệt thật (T8).
 - Code JS không đổi logic, chỉ thêm đồng bộ `aria-pressed`; kiểm thử lại
   đủ T1–T7.
+
+## Đẩy v3 lên GitHub — 24/11/2026
+
+- Push 35 file lên `TongQuocTuan/pdf2trans` branch `main`, commit
+  `b4431b59` ("PDF Translator v3-ocr..."). GitHub Pages đã live bản mới
+  (kiểm tra 200, đủ `src/js/*`, `src/css/*`, font Be Vietnam Pro).
+- 4 file phẳng cũ của ver-02 (`app.js`, `pdf-viewer.js`, `translator.js`,
+  `styles.css` ở gốc) đã xóa khỏi repo.
+- Lần push đầu bị 403 vì manifest gồm `.github/workflows/ci.yml` — GitHub
+  App không có quyền ghi file workflow (đã biết từ vụ libreget 23/11).
+  Đẩy lại không có file đó thì thành công. File `ci.yml` vẫn ở local,
+  chưa lên GitHub — thêm bằng tay qua web UI khi cần.
+- File nhị phân không push được theo giới hạn snapshot: ảnh test
+  `tests/sample-clean*.png`, `tests/tessdata/eng.traineddata.gz` — test OCR
+  thật cần các file này, lấy lại từ bản local/zip.
+- Tống đã tự sửa README 2 lần trên GitHub sau khi push (commit `e29bfd6`,
+  `69acdf8`) — README local hiện thua bản trên GitHub, lần push sau phải
+  đối chiếu trước khi ghi đè.
+
+## Sua loi sau khi chup anh kiem chung — 24/11/2026
+
+Kiem chung bang trinh duyet that (Playwright/Chromium) phat hien 3 loi,
+da sua va kiem chung lai:
+
+- **Nut PDF mau khong chay** (loi nang): file PDF mau nhung trong `app.js`
+  la ban viet tay thieu bang xref — `pdf.js` doc duoc catalog nhung
+  `getPage(1)` loi "Page dictionary kid reference points to wrong type".
+  Da thay bang file PDF 1 trang hop le day du xref/startxref (962 byte),
+  dich van ban xac nhan dung. Nut mau gio mo duoc va render dung.
+- **Drop zone che khung Song ngu khi chua co file** (loi nang): drop zone
+  phu toan bo `main` nen o che do Song ngu no che nut "Dich trang nay"
+  va cat mat nua dau dong gioi thieu o khung phai. Them
+  `updateDropZoneVisibility()` — drop zone chi hien o che do Quet chon
+  khi chua co file.
+- **Thanh cong cu tran o man 390px**: nut zoom + bi cat nua. Thu hep
+  `.pdf-controls` o breakpoint 480px (gap/padding/nut nho hon).
+- `loadDocument`: bao loi ro rang khi CDN PDF.js khong tai duoc
+  ("Khong tai duoc thu vien PDF.js (loi mang/CDN)...") thay cho bao
+  chung "Khong the doc file PDF nay".
+- Kiem chung dich: endpoint Google Translate tra 200, "Hello world" ->
+  "Xin chao the gioi". MyMemory tra 429 (het han muc mien phi trong ngay
+  tren IP dung chung) — khong phai loi app; Google la engine chinh.

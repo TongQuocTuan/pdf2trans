@@ -100,9 +100,11 @@ class PDFViewerController {
       return true;
     } catch (error) {
       console.error('Loi load PDF:', error);
-      const msg = (error && error.name === 'PasswordException')
-        ? 'File PDF nay co mat khau. Hay mo khoa truoc roi tai lai.'
-        : 'Khong the doc file PDF nay. Vui long thu file khac.';
+      const msg = (typeof pdfjsLib === 'undefined')
+        ? 'Khong tai duoc thu vien PDF.js (loi mang/CDN). Kiem tra mang roi tai lai trang.'
+        : (error && error.name === 'PasswordException')
+          ? 'File PDF nay co mat khau. Hay mo khoa truoc roi tai lai.'
+          : 'Khong the doc file PDF nay. Vui long thu file khac.';
       alert(msg);
       return false;
     }

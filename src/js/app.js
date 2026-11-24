@@ -61,6 +61,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnOcrPage = document.getElementById('btnOcrPage');
 
   let currentMode = 'select'; // 'select' or 'bilingual'
+
+  // Drop zone chi hien o che do Quet chon khi chua co file.
+  // Neu de hien ca o che do Song ngu, no se che het khung phai
+  // (nut Dich trang nay, o ban dich trong) vi no phu toan bo main.
+  function updateDropZoneVisibility() {
+    const hasDoc = !!(window.pdfViewer && (window.pdfViewer.pdfDoc || window.pdfViewer.docType === 'image'));
+    dropZone.classList.toggle('hidden', currentMode !== 'select' || hasDoc);
+  }
   let isSyncScroll = true;
   let lastSelectedText = '';
   let tooltipRequestId = 0;
@@ -186,8 +194,8 @@ document.addEventListener('DOMContentLoaded', () => {
     return name.replace(/[\\/:*?"<>|]/g, '-');
   }
 
-  // Show initial DropZone state
-  dropZone.classList.remove('hidden');
+  // Show initial DropZone state (chi che do Quet chon, chua co file)
+  updateDropZoneVisibility();
   if (window.pdfViewer) window.pdfViewer.setActiveView('select');
   applyScanFx();
 
@@ -229,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const ok = await window.pdfViewer.loadImageFile(file);
       if (ok) {
         translationStore.load(window.pdfViewer.fileId, file.name);
-        dropZone.classList.add('hidden');
+        updateDropZoneVisibility();
         if (currentMode === 'bilingual') {
           await window.pdfViewer.renderCurrentPage();
           await renderBilingualPage();
@@ -253,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const success = await window.pdfViewer.loadDocument(buffer, file.name);
       if (success) {
         translationStore.load(window.pdfViewer.fileId, file.name);
-        dropZone.classList.add('hidden');
+        updateDropZoneVisibility();
         if (currentMode === 'bilingual') {
           await window.pdfViewer.renderCurrentPage();
           await renderBilingualPage();
@@ -279,6 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnModeBilingual.setAttribute('aria-pressed', 'false');
     selectionView.classList.remove('hidden');
     bilingualView.classList.add('hidden');
+    updateDropZoneVisibility();
     hideTooltip();
     window.pdfViewer.setActiveView('select');
     if (window.pdfViewer.pdfDoc || window.pdfViewer.docType === 'image') await window.pdfViewer.renderCurrentPage();
@@ -292,6 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnModeSelect.setAttribute('aria-pressed', 'false');
     bilingualView.classList.remove('hidden');
     selectionView.classList.add('hidden');
+    updateDropZoneVisibility();
     hideTooltip();
     window.pdfViewer.setActiveView('bilingual');
     if (window.pdfViewer.pdfDoc || window.pdfViewer.docType === 'image') {
@@ -594,7 +604,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Helper to Create Sample PDF via Canvas/DataURL for immediate test drive
   // ------------------------------------------------------------------------
   async function createAndLoadSamplePDF() {
-    const samplePdfBase64 = `JVBERi0xLjQKJcOkw7zDtsOfCjEgMCBvYmoKPDwvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFI+PgplbmRvYmoKMiAwIG9iaiA8PC9UeXBlIC9QYWdlcyAvQ291bnQgMSAvS2lkcyBbMyAwIFJdID4+CmVuZG9iagozIDAgb2JqIDw8L1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIgNzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PC9Gb250IDw8L0YxIDUgMCBSID4+Pj4+CmVuZG9iago0IDAgb2JqIDw8L0xlbmd0aCAyOTkgPj4Kc3RyZWFtCkJUCi9GMSAyNCBUZgoxMDAgNzAwIFRkCihXZWxjb21lIHRvIFBERiBUcmFuc2xhdG9yIFRvb2wpIFRqCjAgLTQwIFRkCi9GMSAxMiBUZgooVGhpcyBpcyBhIHNhbXBsZSBFbmdsaXNoIFBERiBkb2N1bWVudCBkZXNpZ25lZCB0byB0ZXN0IHRoZSB0cmFuc2xhdGlvbiBmdW5jdGlvbnMuKSBUagowIC0yMCBUZgooWW91IGNhbiBzZWxlY3QgYW55IHRleHQgaGVyZSB0byBzZWUgaW5zdGFudCBWaWV0bmFtZXNlIHRyYW5zbGF0aW9uLikgVGoKMCAtMjAgVGRDKEJpbGluZ3VhbCBtb2RlIGFsbG93cyB5b3UgdG8gcmVhZCB0aGUgZW50aXJlIHBhZ2Ugc2lkZS1ieS1zaWRlLikgVGoKMCAtMjAgVGRDKEFydGlmaWNpYWwgaW50ZWxsaWdlbmNlIGlzIHRyYW5zZm9ybWluZyBob3cgd2UgbGVhcm4gYW5kIGNvbW11bmljYXRlLikgVGoKRVQKZW5kc3RyZWFtCmVuZG9iago1IDAgb2JqIDw8L1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAvSGVsdmV0aWNhID4+CmVuZG9iagp0cmFpbGVyIDw8L1Jvb3QgMSAwIFIgPj4KJSVFT0Y=`;
+    const samplePdfBase64 = `JVBERi0xLjQKJeLjz9MKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2JqCjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA2MTIgNzkyXSAvQ29udGVudHMgNCAwIFIgL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgNSAwIFIgPj4gPj4gPj4KZW5kb2JqCjQgMCBvYmoKPDwgL0xlbmd0aCA0MTIgPj4Kc3RyZWFtCkJUCi9GMSAyNCBUZgoxMDAgNzAwIFRkCihXZWxjb21lIHRvIFBERiBUcmFuc2xhdG9yIFRvb2wpIFRqCjAgLTQwIFRkCi9GMSAxMiBUZgooVGhpcyBpcyBhIHNhbXBsZSBFbmdsaXNoIFBERiBkb2N1bWVudCBkZXNpZ25lZCB0byB0ZXN0IHRoZSB0cmFuc2xhdGlvbiBmdW5jdGlvbnMuKSBUagowIC0yMCBUZAooWW91IGNhbiBzZWxlY3QgYW55IHRleHQgaGVyZSB0byBzZWUgaW5zdGFudCBWaWV0bmFtZXNlIHRyYW5zbGF0aW9uLikgVGoKMCAtMjAgVGQKKEJpbGluZ3VhbCBtb2RlIGFsbG93cyB5b3UgdG8gcmVhZCB0aGUgZW50aXJlIHBhZ2Ugc2lkZS1ieS1zaWRlLikgVGoKMCAtMjAgVGQKKEFydGlmaWNpYWwgaW50ZWxsaWdlbmNlIGlzIHRyYW5zZm9ybWluZyBob3cgd2UgbGVhcm4gYW5kIGNvbW11bmljYXRlLikgVGoKRVQKZW5kc3RyZWFtCmVuZG9iago1IDAgb2JqCjw8IC9UeXBlIC9Gb250IC9TdWJ0eXBlIC9UeXBlMSAvQmFzZUZvbnQgL0hlbHZldGljYSA+PgplbmRvYmoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDE1IDAwMDAwIG4gCjAwMDAwMDAwNjQgMDAwMDAgbiAKMDAwMDAwMDEyMSAwMDAwMCBuIAowMDAwMDAwMjQ3IDAwMDAwIG4gCjAwMDAwMDA3MTAgMDAwMDAgbiAKdHJhaWxlcgo8PCAvU2l6ZSA2IC9Sb290IDEgMCBSID4+CnN0YXJ0eHJlZgo3ODAKJSVFT0Y=`;
 
     const binaryString = window.atob(samplePdfBase64);
     const len = binaryString.length;
@@ -606,7 +616,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const success = await window.pdfViewer.loadDocument(bytes, 'sample.pdf');
     if (success) {
       translationStore.load(window.pdfViewer.fileId, 'sample.pdf');
-      dropZone.classList.add('hidden');
+      updateDropZoneVisibility();
     }
   }
 });
