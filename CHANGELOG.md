@@ -71,3 +71,98 @@ python3 server.py
 ## Chưa làm (đợt 2 trong báo cáo)
 - Nâng PDF.js, tự host, responsive/mobile, font Be Vietnam Pro, glossary thuật ngữ nhất quán cả sách, xuất .docx, IndexedDB thay localStorage khi dịch dài.
 - Gemini vẫn dùng model `gemini-1.5-flash` và endpoint Google Translate không chính thức — 2 điểm này cần kiểm tra lại trước khi dịch khối lượng lớn.
+
+## v2-scan (thử nghiệm) — 24/11/2026
+
+Hiệu ứng scan lúc dịch trang song ngữ, ý tưởng từ uberdesigner pdf-parse,
+tự viết lại bằng vanilla JS, không copy file/template của họ:
+- `pdf-viewer.js`: `getPageTextBlocksWithBoxes()` trả tọa độ từng đoạn;
+  `playScan()` vẽ vạch scan quét trang + khung từng đoạn sáng dần khi vạch đi qua,
+  kèm thanh tiến độ và nhãn "Đoạn N".
+- Nút **Scan: Bật/Tắt** ở pane Bản dịch, lưu lựa chọn vào localStorage.
+- Tôn trọng `prefers-reduced-motion`: hệ thống đặt giảm chuyển động thì hiệu ứng tắt hẳn.
+- Scan chạy song song với việc dịch, không chặn bản dịch. Hết scan thì khung tự mờ đi.
+- Chưa push lên GitHub — bản thử nghiệm, ver-02 trên GitHub giữ nguyên.
+
+## v3-ocr (thử nghiệm) — 24/11/2026
+
+Thêm OCR (Tesseract.js 5.1.0, CDN, nhận dạng tiếng Anh — tài liệu gốc để dịch):
+- Mở thêm file ảnh (PNG/JPG/WebP/GIF/BMP) qua nút "Mở file PDF / Ảnh" hoặc kéo-thả;
+  ảnh hiện như 1 trang duy nhất, zoom được như PDF.
+- Nút **"Quét OCR trang này"** ở pane Bản dịch: chạy OCR cho ảnh đang mở, hoặc cho
+  trang PDF scan (trang không có text layer — render trang ra canvas rồi OCR).
+  Có thanh tiến độ + trạng thái từng bước (tải lõi, tải dữ liệu tiếng Anh, nhận dạng).
+- OCR chỉ chạy khi bấm nút (lần đầu tải khoảng 15 MB về máy, cần mạng; lần sau nhanh hơn).
+  Kết quả OCR trả đoạn kèm tọa độ như PDF có text: chạy được hiệu ứng scan, dịch,
+  duyệt từng đoạn, lưu localStorage và xuất .md/.json như bình thường.
+- Chưa kiểm chứng OCR thật trên trình duyệt (môi trường thử bị chặn tải dữ liệu
+  ngôn ngữ) — chỉ kiểm chứng logic bằng dữ liệu OCR giả lập. Cần thử trên máy thật
+  với 1 ảnh/PDF scan trước khi dùng cho sách.
+- Chưa push lên GitHub — bản thử nghiệm, ver-02 trên GitHub giữ nguyên.
+
+## Kiểm thử theo speckit-plan — 24/11/2026
+
+Chạy đủ quy trình spec-kit cho v3-ocr (spec, plan, research, data-model,
+contracts, quickstart) tại `specs/001-v3-ocr-kiem-thu/`, kết quả ở
+`KET-QUA-KIEM-THU.md`:
+- T1–T7 PASS: OCR thật khớp 100% ký tự trên ảnh mẫu sạch và ảnh 2×
+  (đường PDF scan); code v3 chạy đúng trên dữ liệu OCR thật; hồi quy
+  scan v2 PASS; syntax + server 200; tham chiếu chéo đủ.
+- T8 CHƯA KIỂM CHỨNG: chưa chạy trên trình duyệt thật — cần thử trên máy
+  thật trước khi dùng cho sách.
+- Lưu ý: Tesseract có thể gộp 2 dòng thành 1 đoạn; ảnh chữ quá nhỏ OCR sai.
+
+## Sắp xếp lại thư mục — 24/11/2026
+
+Xếp `v3-ocr` thành cấu trúc chuẩn của dự án web tĩnh, code không đổi,
+chỉ đổi chỗ file và đường dẫn:
+- `src/js/` — app.js, pdf-viewer.js, translator.js
+- `assets/css/` — styles.css
+- `tests/` — bộ kiểm thử speckit-plan + ảnh mẫu OCR + tessdata
+- `docs/` — báo cáo đánh giá, spec, kết quả kiểm thử
+- `index.html`, `server.py`, README, LICENSE, CHANGELOG giữ ở gốc
+  để GitHub Pages vẫn chạy.
+- `.specify/` giữ ở gốc.
+- Kiểm thử lại đủ T1–T7 trên cấu trúc mới (xem
+  `docs/specs/001-v3-ocr-kiem-thu/KET-QUA-KIEM-THU.md`).
+
+## Sắp xếp lại theo repo GitHub mẫu — 24/11/2026
+
+Học từ cây thư mục thật của `naptha/tesseract.js` và
+`Nikhil-creat/translator-ai` (xem `docs/STRUCTURE-CHECKLIST.md`):
+- Gom source vào `src/` (`src/js/` + `src/css/`; trước đây CSS nằm ở
+  `assets/` trong khi JS ở `src/` — không nhất quán).
+- Test đổi tên theo quy ước `*.test.js`; chạy bằng `npm test` /
+  `npm run test:ocr` (thêm `package.json` + `package-lock.json`).
+- Thêm `.nojekyll`, `404.html`, `docs/ARCHITECTURE.md`, `SECURITY.md`,
+  `.github/workflows/ci.yml` (chỉ kiểm tra syntax + test giả lập).
+- Giữ `server.py` ở gốc (entry point chạy local) và spec-kit ở
+  `docs/specs/`; chưa thêm `CONTRIBUTING.md` (tool cá nhân, 1 người làm).
+- Code không đổi, chỉ đổi chỗ file và đường dẫn; kiểm thử lại đủ T1–T7.
+
+## Thiết kế lại giao diện theo ui-ux-pro-max — 24/11/2026
+
+- Sinh design system bằng skill (`design-system/pdf-translator/MASTER.md`,
+  variance 4 / motion 3 / density 5): Flat Design, teal `#0D9488`/`#14B8A6`
+  + cam CTA `#EA580C`, chuyển động 150–200ms. Ghi đè ở
+  `design-system/pdf-translator/pages/app.md` (dark-only, font Be Vietnam
+  Pro thay Inter, chữ đen trên nút teal/cam).
+- `src/css/styles.css` viết lại: bỏ hết gradient, glassmorphism
+  (backdrop blur), bóng phát sáng; token màu theo MASTER; tương phản đã đo
+  (chữ chính 17.06:1, chữ phụ 6.96:1, nút teal 5.61:1, nút cam 5.90:1);
+  chữ mờ cũ `#64748B` (3.75:1, rớt) đã loại.
+- Font: Be Vietnam Pro thay Plus Jakarta Sans (font cũ nằm trong danh
+  sách cấm của Impeccable).
+- A11y: focus ring `:focus-visible` cho mọi điều khiển, skip link, aria-label
+  cho nút chỉ có icon, `aria-pressed` đồng bộ qua JS, modal có
+  `role="dialog"` + `aria-modal`, tôn trọng `prefers-reduced-motion`
+  (tắt toàn bộ animation).
+- Vùng chạm: nút chính/chuyển chế độ 44px, nút icon 40px, nút phụ 36–40px
+  (web tối thiểu 24px theo WCAG 2.2 AA).
+- Responsive mới (trước đây không có): 1024 / 768 / 480 — header cuộn
+  dòng, song ngữ xếp dọc dưới 768px, tooltip/modal không tràn màn hình nhỏ.
+- Impeccable detect (regex, trên file CSS): 0 phát hiện. Bản quét trình
+  duyệt đầy đủ chưa chạy được (VM không có Chrome) — cần kiểm tra bằng mắt
+  trên trình duyệt thật (T8).
+- Code JS không đổi logic, chỉ thêm đồng bộ `aria-pressed`; kiểm thử lại
+  đủ T1–T7.

@@ -1,0 +1,5106 @@
+{
+ "text": "Hello world from a scanned page.\nSecond paragraph here.\n",
+ "paragraphs": [
+  {
+   "lines": [
+    {
+     "words": [
+      {
+       "symbols": [
+        {
+         "choices": [
+          {
+           "text": "H",
+           "confidence": 99.55606079101562
+          }
+         ],
+         "image": null,
+         "text": "H",
+         "confidence": 99.55606079101562,
+         "baseline": {
+          "x0": 43,
+          "y0": 80,
+          "x1": 120,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 43,
+          "y0": 57,
+          "x1": 61,
+          "y1": 80
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "e",
+           "confidence": 99.56285095214844
+          }
+         ],
+         "image": null,
+         "text": "e",
+         "confidence": 99.56285095214844,
+         "baseline": {
+          "x0": 43,
+          "y0": 80,
+          "x1": 120,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 58,
+          "y0": 56,
+          "x1": 75,
+          "y1": 80
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "l",
+           "confidence": 99.55059051513672
+          }
+         ],
+         "image": null,
+         "text": "l",
+         "confidence": 99.55059051513672,
+         "baseline": {
+          "x0": 43,
+          "y0": 80,
+          "x1": 120,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 66,
+          "y0": 56,
+          "x1": 90,
+          "y1": 80
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "l",
+           "confidence": 99.36608123779297
+          }
+         ],
+         "image": null,
+         "text": "l",
+         "confidence": 99.36608123779297,
+         "baseline": {
+          "x0": 43,
+          "y0": 80,
+          "x1": 120,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 96,
+          "y0": 56,
+          "x1": 99,
+          "y1": 80
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "o",
+           "confidence": 99.32002258300781
+          }
+         ],
+         "image": null,
+         "text": "o",
+         "confidence": 99.32002258300781,
+         "baseline": {
+          "x0": 43,
+          "y0": 80,
+          "x1": 120,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 104,
+          "y0": 62,
+          "x1": 120,
+          "y1": 80
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        }
+       ],
+       "choices": [
+        {
+         "text": "Hello",
+         "confidence": 95.24017333984375
+        }
+       ],
+       "text": "Hello",
+       "confidence": 95.24017333984375,
+       "baseline": {
+        "x0": 43,
+        "y0": 80,
+        "x1": 120,
+        "y1": 80,
+        "has_baseline": true
+       },
+       "bbox": {
+        "x0": 43,
+        "y0": 56,
+        "x1": 120,
+        "y1": 80
+       },
+       "is_numeric": false,
+       "in_dictionary": true,
+       "direction": "LEFT_TO_RIGHT",
+       "language": "eng",
+       "is_bold": false,
+       "is_italic": false,
+       "is_underlined": false,
+       "is_monospace": false,
+       "is_serif": false,
+       "is_smallcaps": false,
+       "font_size": 32,
+       "font_id": -1,
+       "font_name": ""
+      },
+      {
+       "symbols": [
+        {
+         "choices": [
+          {
+           "text": "w",
+           "confidence": 99.53059387207031
+          }
+         ],
+         "image": null,
+         "text": "w",
+         "confidence": 99.53059387207031,
+         "baseline": {
+          "x0": 132,
+          "y0": 80,
+          "x1": 216,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 132,
+          "y0": 62,
+          "x1": 156,
+          "y1": 80
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "o",
+           "confidence": 99.57077026367188
+          }
+         ],
+         "image": null,
+         "text": "o",
+         "confidence": 99.57077026367188,
+         "baseline": {
+          "x0": 132,
+          "y0": 80,
+          "x1": 216,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 159,
+          "y0": 62,
+          "x1": 175,
+          "y1": 80
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "r",
+           "confidence": 99.57238006591797
+          }
+         ],
+         "image": null,
+         "text": "r",
+         "confidence": 99.57238006591797,
+         "baseline": {
+          "x0": 132,
+          "y0": 80,
+          "x1": 216,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 169,
+          "y0": 56,
+          "x1": 186,
+          "y1": 80
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "l",
+           "confidence": 99.49917602539062
+          }
+         ],
+         "image": null,
+         "text": "l",
+         "confidence": 99.49917602539062,
+         "baseline": {
+          "x0": 132,
+          "y0": 80,
+          "x1": 216,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 180,
+          "y0": 56,
+          "x1": 196,
+          "y1": 80
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "d",
+           "confidence": 99.41078186035156
+          }
+         ],
+         "image": null,
+         "text": "d",
+         "confidence": 99.41078186035156,
+         "baseline": {
+          "x0": 132,
+          "y0": 80,
+          "x1": 216,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 201,
+          "y0": 56,
+          "x1": 216,
+          "y1": 80
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        }
+       ],
+       "choices": [
+        {
+         "text": "world",
+         "confidence": 95.87545776367188
+        }
+       ],
+       "text": "world",
+       "confidence": 95.87545776367188,
+       "baseline": {
+        "x0": 132,
+        "y0": 80,
+        "x1": 216,
+        "y1": 80,
+        "has_baseline": true
+       },
+       "bbox": {
+        "x0": 132,
+        "y0": 56,
+        "x1": 216,
+        "y1": 80
+       },
+       "is_numeric": false,
+       "in_dictionary": true,
+       "direction": "LEFT_TO_RIGHT",
+       "language": "eng",
+       "is_bold": false,
+       "is_italic": false,
+       "is_underlined": false,
+       "is_monospace": false,
+       "is_serif": false,
+       "is_smallcaps": false,
+       "font_size": 32,
+       "font_id": -1,
+       "font_name": ""
+      },
+      {
+       "symbols": [
+        {
+         "choices": [
+          {
+           "text": "f",
+           "confidence": 99.559326171875
+          }
+         ],
+         "image": null,
+         "text": "f",
+         "confidence": 99.559326171875,
+         "baseline": {
+          "x0": 231,
+          "y0": 80,
+          "x1": 301,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 231,
+          "y0": 56,
+          "x1": 242,
+          "y1": 80
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "r",
+           "confidence": 99.57337951660156
+          }
+         ],
+         "image": null,
+         "text": "r",
+         "confidence": 99.57337951660156,
+         "baseline": {
+          "x0": 231,
+          "y0": 80,
+          "x1": 301,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 244,
+          "y0": 62,
+          "x1": 254,
+          "y1": 80
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "o",
+           "confidence": 99.54719543457031
+          }
+         ],
+         "image": null,
+         "text": "o",
+         "confidence": 99.54719543457031,
+         "baseline": {
+          "x0": 231,
+          "y0": 80,
+          "x1": 301,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 255,
+          "y0": 62,
+          "x1": 271,
+          "y1": 80
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "m",
+           "confidence": 99.57303619384766
+          }
+         ],
+         "image": null,
+         "text": "m",
+         "confidence": 99.57303619384766,
+         "baseline": {
+          "x0": 231,
+          "y0": 80,
+          "x1": 301,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 276,
+          "y0": 62,
+          "x1": 301,
+          "y1": 80
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        }
+       ],
+       "choices": [
+        {
+         "text": "from",
+         "confidence": 96.83037567138672
+        }
+       ],
+       "text": "from",
+       "confidence": 96.83037567138672,
+       "baseline": {
+        "x0": 231,
+        "y0": 80,
+        "x1": 301,
+        "y1": 80,
+        "has_baseline": true
+       },
+       "bbox": {
+        "x0": 231,
+        "y0": 56,
+        "x1": 301,
+        "y1": 80
+       },
+       "is_numeric": false,
+       "in_dictionary": true,
+       "direction": "LEFT_TO_RIGHT",
+       "language": "eng",
+       "is_bold": false,
+       "is_italic": false,
+       "is_underlined": false,
+       "is_monospace": false,
+       "is_serif": false,
+       "is_smallcaps": false,
+       "font_size": 32,
+       "font_id": -1,
+       "font_name": ""
+      },
+      {
+       "symbols": [
+        {
+         "choices": [
+          {
+           "text": "a",
+           "confidence": 99.5716781616211
+          }
+         ],
+         "image": null,
+         "text": "a",
+         "confidence": 99.5716781616211,
+         "baseline": {
+          "x0": 316,
+          "y0": 80,
+          "x1": 331,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 316,
+          "y0": 62,
+          "x1": 331,
+          "y1": 80
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        }
+       ],
+       "choices": [
+        {
+         "text": "a",
+         "confidence": 96.99474334716797
+        }
+       ],
+       "text": "a",
+       "confidence": 96.99474334716797,
+       "baseline": {
+        "x0": 316,
+        "y0": 80,
+        "x1": 331,
+        "y1": 80,
+        "has_baseline": true
+       },
+       "bbox": {
+        "x0": 316,
+        "y0": 62,
+        "x1": 331,
+        "y1": 80
+       },
+       "is_numeric": false,
+       "in_dictionary": true,
+       "direction": "LEFT_TO_RIGHT",
+       "language": "eng",
+       "is_bold": false,
+       "is_italic": false,
+       "is_underlined": false,
+       "is_monospace": false,
+       "is_serif": false,
+       "is_smallcaps": false,
+       "font_size": 32,
+       "font_id": -1,
+       "font_name": ""
+      },
+      {
+       "symbols": [
+        {
+         "choices": [
+          {
+           "text": "s",
+           "confidence": 99.5709457397461
+          }
+         ],
+         "image": null,
+         "text": "s",
+         "confidence": 99.5709457397461,
+         "baseline": {
+          "x0": 346,
+          "y0": 80,
+          "x1": 475,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 346,
+          "y0": 62,
+          "x1": 359,
+          "y1": 80
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "c",
+           "confidence": 99.45941925048828
+          }
+         ],
+         "image": null,
+         "text": "c",
+         "confidence": 99.45941925048828,
+         "baseline": {
+          "x0": 346,
+          "y0": 80,
+          "x1": 475,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 363,
+          "y0": 62,
+          "x1": 377,
+          "y1": 80
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "a",
+           "confidence": 99.48051452636719
+          }
+         ],
+         "image": null,
+         "text": "a",
+         "confidence": 99.48051452636719,
+         "baseline": {
+          "x0": 346,
+          "y0": 80,
+          "x1": 475,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 380,
+          "y0": 62,
+          "x1": 395,
+          "y1": 80
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "n",
+           "confidence": 99.55889129638672
+          }
+         ],
+         "image": null,
+         "text": "n",
+         "confidence": 99.55889129638672,
+         "baseline": {
+          "x0": 346,
+          "y0": 80,
+          "x1": 475,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 401,
+          "y0": 62,
+          "x1": 416,
+          "y1": 80
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "n",
+           "confidence": 99.53187561035156
+          }
+         ],
+         "image": null,
+         "text": "n",
+         "confidence": 99.53187561035156,
+         "baseline": {
+          "x0": 346,
+          "y0": 80,
+          "x1": 475,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 421,
+          "y0": 62,
+          "x1": 436,
+          "y1": 80
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "e",
+           "confidence": 99.57280731201172
+          }
+         ],
+         "image": null,
+         "text": "e",
+         "confidence": 99.57280731201172,
+         "baseline": {
+          "x0": 346,
+          "y0": 80,
+          "x1": 475,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 440,
+          "y0": 62,
+          "x1": 456,
+          "y1": 80
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "d",
+           "confidence": 99.51427459716797
+          }
+         ],
+         "image": null,
+         "text": "d",
+         "confidence": 99.51427459716797,
+         "baseline": {
+          "x0": 346,
+          "y0": 80,
+          "x1": 475,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 460,
+          "y0": 56,
+          "x1": 475,
+          "y1": 80
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        }
+       ],
+       "choices": [
+        {
+         "text": "scanned",
+         "confidence": 96.21591186523438
+        }
+       ],
+       "text": "scanned",
+       "confidence": 96.21591186523438,
+       "baseline": {
+        "x0": 346,
+        "y0": 80,
+        "x1": 475,
+        "y1": 80,
+        "has_baseline": true
+       },
+       "bbox": {
+        "x0": 346,
+        "y0": 56,
+        "x1": 475,
+        "y1": 80
+       },
+       "is_numeric": false,
+       "in_dictionary": true,
+       "direction": "LEFT_TO_RIGHT",
+       "language": "eng",
+       "is_bold": false,
+       "is_italic": false,
+       "is_underlined": false,
+       "is_monospace": false,
+       "is_serif": false,
+       "is_smallcaps": false,
+       "font_size": 32,
+       "font_id": -1,
+       "font_name": ""
+      },
+      {
+       "symbols": [
+        {
+         "choices": [
+          {
+           "text": "p",
+           "confidence": 99.49613952636719
+          }
+         ],
+         "image": null,
+         "text": "p",
+         "confidence": 99.49613952636719,
+         "baseline": {
+          "x0": 492,
+          "y0": 80,
+          "x1": 576,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 492,
+          "y0": 62,
+          "x1": 508,
+          "y1": 87
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "a",
+           "confidence": 99.40402221679688
+          }
+         ],
+         "image": null,
+         "text": "a",
+         "confidence": 99.40402221679688,
+         "baseline": {
+          "x0": 492,
+          "y0": 80,
+          "x1": 576,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 511,
+          "y0": 62,
+          "x1": 526,
+          "y1": 80
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "g",
+           "confidence": 99.54391479492188
+          }
+         ],
+         "image": null,
+         "text": "g",
+         "confidence": 99.54391479492188,
+         "baseline": {
+          "x0": 492,
+          "y0": 80,
+          "x1": 576,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 531,
+          "y0": 62,
+          "x1": 546,
+          "y1": 87
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "e",
+           "confidence": 99.57391357421875
+          }
+         ],
+         "image": null,
+         "text": "e",
+         "confidence": 99.57391357421875,
+         "baseline": {
+          "x0": 492,
+          "y0": 80,
+          "x1": 576,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 542,
+          "y0": 62,
+          "x1": 559,
+          "y1": 87
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": ".",
+           "confidence": 99.56205749511719
+          }
+         ],
+         "image": null,
+         "text": ".",
+         "confidence": 99.56205749511719,
+         "baseline": {
+          "x0": 492,
+          "y0": 80,
+          "x1": 576,
+          "y1": 80,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 551,
+          "y0": 62,
+          "x1": 576,
+          "y1": 80
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        }
+       ],
+       "choices": [
+        {
+         "text": "page.",
+         "confidence": 95.82815551757812
+        }
+       ],
+       "text": "page.",
+       "confidence": 95.82815551757812,
+       "baseline": {
+        "x0": 492,
+        "y0": 80,
+        "x1": 576,
+        "y1": 80,
+        "has_baseline": true
+       },
+       "bbox": {
+        "x0": 492,
+        "y0": 62,
+        "x1": 576,
+        "y1": 87
+       },
+       "is_numeric": false,
+       "in_dictionary": true,
+       "direction": "LEFT_TO_RIGHT",
+       "language": "eng",
+       "is_bold": false,
+       "is_italic": false,
+       "is_underlined": false,
+       "is_monospace": false,
+       "is_serif": false,
+       "is_smallcaps": false,
+       "font_size": 32,
+       "font_id": -1,
+       "font_name": ""
+      }
+     ],
+     "text": "Hello world from a scanned page.\n",
+     "confidence": 96.16413879394531,
+     "baseline": {
+      "x0": 43,
+      "y0": 80,
+      "x1": 576,
+      "y1": 80,
+      "has_baseline": true
+     },
+     "rowAttributes": {
+      "row_height": 31,
+      "descenders": 7,
+      "ascenders": 6
+     },
+     "bbox": {
+      "x0": 43,
+      "y0": 56,
+      "x1": 576,
+      "y1": 87
+     }
+    },
+    {
+     "words": [
+      {
+       "symbols": [
+        {
+         "choices": [
+          {
+           "text": "S",
+           "confidence": 99.55647277832031
+          }
+         ],
+         "image": null,
+         "text": "S",
+         "confidence": 99.55647277832031,
+         "baseline": {
+          "x0": 42,
+          "y0": 170,
+          "x1": 154,
+          "y1": 170,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 42,
+          "y0": 147,
+          "x1": 59,
+          "y1": 170
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "e",
+           "confidence": 99.56305694580078
+          }
+         ],
+         "image": null,
+         "text": "e",
+         "confidence": 99.56305694580078,
+         "baseline": {
+          "x0": 42,
+          "y0": 170,
+          "x1": 154,
+          "y1": 170,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 62,
+          "y0": 152,
+          "x1": 78,
+          "y1": 170
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "c",
+           "confidence": 99.5650863647461
+          }
+         ],
+         "image": null,
+         "text": "c",
+         "confidence": 99.5650863647461,
+         "baseline": {
+          "x0": 42,
+          "y0": 170,
+          "x1": 154,
+          "y1": 170,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 82,
+          "y0": 152,
+          "x1": 96,
+          "y1": 170
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "o",
+           "confidence": 99.57222747802734
+          }
+         ],
+         "image": null,
+         "text": "o",
+         "confidence": 99.57222747802734,
+         "baseline": {
+          "x0": 42,
+          "y0": 170,
+          "x1": 154,
+          "y1": 170,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 100,
+          "y0": 152,
+          "x1": 116,
+          "y1": 170
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "n",
+           "confidence": 99.5064926147461
+          }
+         ],
+         "image": null,
+         "text": "n",
+         "confidence": 99.5064926147461,
+         "baseline": {
+          "x0": 42,
+          "y0": 170,
+          "x1": 154,
+          "y1": 170,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 120,
+          "y0": 152,
+          "x1": 135,
+          "y1": 170
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "d",
+           "confidence": 99.55297088623047
+          }
+         ],
+         "image": null,
+         "text": "d",
+         "confidence": 99.55297088623047,
+         "baseline": {
+          "x0": 42,
+          "y0": 170,
+          "x1": 154,
+          "y1": 170,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 139,
+          "y0": 146,
+          "x1": 154,
+          "y1": 170
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        }
+       ],
+       "choices": [
+        {
+         "text": "Second",
+         "confidence": 96.54544067382812
+        }
+       ],
+       "text": "Second",
+       "confidence": 96.54544067382812,
+       "baseline": {
+        "x0": 42,
+        "y0": 170,
+        "x1": 154,
+        "y1": 170,
+        "has_baseline": true
+       },
+       "bbox": {
+        "x0": 42,
+        "y0": 146,
+        "x1": 154,
+        "y1": 170
+       },
+       "is_numeric": false,
+       "in_dictionary": true,
+       "direction": "LEFT_TO_RIGHT",
+       "language": "eng",
+       "is_bold": false,
+       "is_italic": false,
+       "is_underlined": false,
+       "is_monospace": false,
+       "is_serif": false,
+       "is_smallcaps": false,
+       "font_size": 32,
+       "font_id": -1,
+       "font_name": ""
+      },
+      {
+       "symbols": [
+        {
+         "choices": [
+          {
+           "text": "p",
+           "confidence": 99.57069396972656
+          }
+         ],
+         "image": null,
+         "text": "p",
+         "confidence": 99.57069396972656,
+         "baseline": {
+          "x0": 171,
+          "y0": 170,
+          "x1": 332,
+          "y1": 170,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 171,
+          "y0": 152,
+          "x1": 187,
+          "y1": 177
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "a",
+           "confidence": 99.54553985595703
+          }
+         ],
+         "image": null,
+         "text": "a",
+         "confidence": 99.54553985595703,
+         "baseline": {
+          "x0": 171,
+          "y0": 170,
+          "x1": 332,
+          "y1": 170,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 190,
+          "y0": 152,
+          "x1": 205,
+          "y1": 170
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "r",
+           "confidence": 99.57067108154297
+          }
+         ],
+         "image": null,
+         "text": "r",
+         "confidence": 99.57067108154297,
+         "baseline": {
+          "x0": 171,
+          "y0": 170,
+          "x1": 332,
+          "y1": 170,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 211,
+          "y0": 152,
+          "x1": 221,
+          "y1": 170
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "a",
+           "confidence": 99.53628540039062
+          }
+         ],
+         "image": null,
+         "text": "a",
+         "confidence": 99.53628540039062,
+         "baseline": {
+          "x0": 171,
+          "y0": 170,
+          "x1": 332,
+          "y1": 170,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 223,
+          "y0": 152,
+          "x1": 238,
+          "y1": 170
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "g",
+           "confidence": 99.55503845214844
+          }
+         ],
+         "image": null,
+         "text": "g",
+         "confidence": 99.55503845214844,
+         "baseline": {
+          "x0": 171,
+          "y0": 170,
+          "x1": 332,
+          "y1": 170,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 243,
+          "y0": 152,
+          "x1": 258,
+          "y1": 177
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "r",
+           "confidence": 99.48111724853516
+          }
+         ],
+         "image": null,
+         "text": "r",
+         "confidence": 99.48111724853516,
+         "baseline": {
+          "x0": 171,
+          "y0": 170,
+          "x1": 332,
+          "y1": 170,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 264,
+          "y0": 152,
+          "x1": 274,
+          "y1": 170
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "a",
+           "confidence": 99.55866241455078
+          }
+         ],
+         "image": null,
+         "text": "a",
+         "confidence": 99.55866241455078,
+         "baseline": {
+          "x0": 171,
+          "y0": 170,
+          "x1": 332,
+          "y1": 170,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 276,
+          "y0": 152,
+          "x1": 291,
+          "y1": 170
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "p",
+           "confidence": 99.53033447265625
+          }
+         ],
+         "image": null,
+         "text": "p",
+         "confidence": 99.53033447265625,
+         "baseline": {
+          "x0": 171,
+          "y0": 170,
+          "x1": 332,
+          "y1": 170,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 297,
+          "y0": 152,
+          "x1": 313,
+          "y1": 177
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "h",
+           "confidence": 99.47431945800781
+          }
+         ],
+         "image": null,
+         "text": "h",
+         "confidence": 99.47431945800781,
+         "baseline": {
+          "x0": 171,
+          "y0": 170,
+          "x1": 332,
+          "y1": 170,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 317,
+          "y0": 146,
+          "x1": 332,
+          "y1": 170
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        }
+       ],
+       "choices": [
+        {
+         "text": "paragraph",
+         "confidence": 96.32025909423828
+        }
+       ],
+       "text": "paragraph",
+       "confidence": 96.32025909423828,
+       "baseline": {
+        "x0": 171,
+        "y0": 170,
+        "x1": 332,
+        "y1": 170,
+        "has_baseline": true
+       },
+       "bbox": {
+        "x0": 171,
+        "y0": 146,
+        "x1": 332,
+        "y1": 177
+       },
+       "is_numeric": false,
+       "in_dictionary": true,
+       "direction": "LEFT_TO_RIGHT",
+       "language": "eng",
+       "is_bold": false,
+       "is_italic": false,
+       "is_underlined": false,
+       "is_monospace": false,
+       "is_serif": false,
+       "is_smallcaps": false,
+       "font_size": 32,
+       "font_id": -1,
+       "font_name": ""
+      },
+      {
+       "symbols": [
+        {
+         "choices": [
+          {
+           "text": "h",
+           "confidence": 99.47539520263672
+          }
+         ],
+         "image": null,
+         "text": "h",
+         "confidence": 99.47539520263672,
+         "baseline": {
+          "x0": 347,
+          "y0": 170,
+          "x1": 424,
+          "y1": 170,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 347,
+          "y0": 146,
+          "x1": 362,
+          "y1": 170
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "e",
+           "confidence": 99.56784057617188
+          }
+         ],
+         "image": null,
+         "text": "e",
+         "confidence": 99.56784057617188,
+         "baseline": {
+          "x0": 347,
+          "y0": 170,
+          "x1": 424,
+          "y1": 170,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 367,
+          "y0": 152,
+          "x1": 383,
+          "y1": 170
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "r",
+           "confidence": 99.56072998046875
+          }
+         ],
+         "image": null,
+         "text": "r",
+         "confidence": 99.56072998046875,
+         "baseline": {
+          "x0": 347,
+          "y0": 170,
+          "x1": 424,
+          "y1": 170,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 376,
+          "y0": 146,
+          "x1": 393,
+          "y1": 170
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": "e",
+           "confidence": 99.47418975830078
+          }
+         ],
+         "image": null,
+         "text": "e",
+         "confidence": 99.47418975830078,
+         "baseline": {
+          "x0": 347,
+          "y0": 170,
+          "x1": 424,
+          "y1": 170,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 387,
+          "y0": 152,
+          "x1": 415,
+          "y1": 170
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        },
+        {
+         "choices": [
+          {
+           "text": ".",
+           "confidence": 99.5702896118164
+          }
+         ],
+         "image": null,
+         "text": ".",
+         "confidence": 99.5702896118164,
+         "baseline": {
+          "x0": 347,
+          "y0": 170,
+          "x1": 424,
+          "y1": 170,
+          "has_baseline": true
+         },
+         "bbox": {
+          "x0": 420,
+          "y0": 166,
+          "x1": 424,
+          "y1": 170
+         },
+         "is_superscript": false,
+         "is_subscript": false,
+         "is_dropcap": false
+        }
+       ],
+       "choices": [
+        {
+         "text": "here.",
+         "confidence": 96.31935119628906
+        }
+       ],
+       "text": "here.",
+       "confidence": 96.31935119628906,
+       "baseline": {
+        "x0": 347,
+        "y0": 170,
+        "x1": 424,
+        "y1": 170,
+        "has_baseline": true
+       },
+       "bbox": {
+        "x0": 347,
+        "y0": 146,
+        "x1": 424,
+        "y1": 170
+       },
+       "is_numeric": false,
+       "in_dictionary": true,
+       "direction": "LEFT_TO_RIGHT",
+       "language": "eng",
+       "is_bold": false,
+       "is_italic": false,
+       "is_underlined": false,
+       "is_monospace": false,
+       "is_serif": false,
+       "is_smallcaps": false,
+       "font_size": 32,
+       "font_id": -1,
+       "font_name": ""
+      }
+     ],
+     "text": "Second paragraph here.\n",
+     "confidence": 96.39501953125,
+     "baseline": {
+      "x0": 42,
+      "y0": 170,
+      "x1": 424,
+      "y1": 170,
+      "has_baseline": true
+     },
+     "rowAttributes": {
+      "row_height": 31,
+      "descenders": 7,
+      "ascenders": 6
+     },
+     "bbox": {
+      "x0": 42,
+      "y0": 146,
+      "x1": 424,
+      "y1": 177
+     }
+    }
+   ],
+   "text": "Hello world from a scanned page.\nSecond paragraph here.\n",
+   "confidence": 96.24109649658203,
+   "baseline": {
+    "x0": 43,
+    "y0": 80,
+    "x1": 576,
+    "y1": 80,
+    "has_baseline": true
+   },
+   "bbox": {
+    "x0": 42,
+    "y0": 56,
+    "x1": 576,
+    "y1": 177
+   },
+   "is_ltr": true,
+   "page": {
+    "text": "Hello world from a scanned page.\nSecond paragraph here.\n",
+    "hocr": "<div class='ocr_page' id='page_1' title='image \"unknown\"; bbox 0 0 900 260; ppageno 0; scan_res 70 70'>\n <div class='ocr_carea' id='block_1_1' title=\"bbox 42 56 576 177\">\n  <p class='ocr_par' id='par_1_1' lang='eng' title=\"bbox 42 56 576 177\">\n   <span class='ocr_line' id='line_1_1' title=\"bbox 43 56 576 87; baseline 0 -7; x_size 31; x_descenders 7; x_ascenders 6\">\n    <span class='ocrx_word' id='word_1_1' title='bbox 43 56 120 80; x_wconf 95'>Hello</span>\n    <span class='ocrx_word' id='word_1_2' title='bbox 132 56 216 80; x_wconf 95'>world</span>\n    <span class='ocrx_word' id='word_1_3' title='bbox 231 56 301 80; x_wconf 96'>from</span>\n    <span class='ocrx_word' id='word_1_4' title='bbox 316 62 331 80; x_wconf 96'>a</span>\n    <span class='ocrx_word' id='word_1_5' title='bbox 346 56 475 80; x_wconf 96'>scanned</span>\n    <span class='ocrx_word' id='word_1_6' title='bbox 492 62 576 87; x_wconf 95'>page.</span>\n   </span>\n   <span class='ocr_line' id='line_1_2' title=\"bbox 42 146 424 177; baseline 0 -7; x_size 31; x_descenders 7; x_ascenders 6\">\n    <span class='ocrx_word' id='word_1_7' title='bbox 42 146 154 170; x_wconf 96'>Second</span>\n    <span class='ocrx_word' id='word_1_8' title='bbox 171 146 332 177; x_wconf 96'>paragraph</span>\n    <span class='ocrx_word' id='word_1_9' title='bbox 347 146 424 170; x_wconf 96'>here.</span>\n   </span>\n  </p>\n </div>\n</div>\n",
+    "tsv": "1\t1\t0\t0\t0\t0\t0\t0\t900\t260\t-1\t\n2\t1\t1\t0\t0\t0\t42\t56\t534\t121\t-1\t\n3\t1\t1\t1\t0\t0\t42\t56\t534\t121\t-1\t\n4\t1\t1\t1\t1\t0\t43\t56\t533\t31\t-1\t\n5\t1\t1\t1\t1\t1\t43\t56\t77\t24\t95.240173\tHello\n5\t1\t1\t1\t1\t2\t132\t56\t84\t24\t95.875458\tworld\n5\t1\t1\t1\t1\t3\t231\t56\t70\t24\t96.830376\tfrom\n5\t1\t1\t1\t1\t4\t316\t62\t15\t18\t96.994743\ta\n5\t1\t1\t1\t1\t5\t346\t56\t129\t24\t96.215912\tscanned\n5\t1\t1\t1\t1\t6\t492\t62\t84\t25\t95.828156\tpage.\n4\t1\t1\t1\t2\t0\t42\t146\t382\t31\t-1\t\n5\t1\t1\t1\t2\t1\t42\t146\t112\t24\t96.545441\tSecond\n5\t1\t1\t1\t2\t2\t171\t146\t161\t31\t96.320259\tparagraph\n5\t1\t1\t1\t2\t3\t347\t146\t77\t24\t96.319351\there.\n",
+    "box": null,
+    "unlv": null,
+    "osd": null,
+    "pdf": null,
+    "imageColor": null,
+    "imageGrey": null,
+    "imageBinary": null,
+    "confidence": 95,
+    "blocks": [
+     {
+      "paragraphs": [
+       {
+        "lines": [
+         {
+          "words": [
+           {
+            "symbols": [
+             {
+              "choices": [
+               {
+                "text": "H",
+                "confidence": 99.55606079101562
+               }
+              ],
+              "image": null,
+              "text": "H",
+              "confidence": 99.55606079101562,
+              "baseline": {
+               "x0": 43,
+               "y0": 80,
+               "x1": 120,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 43,
+               "y0": 57,
+               "x1": 61,
+               "y1": 80
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "e",
+                "confidence": 99.56285095214844
+               }
+              ],
+              "image": null,
+              "text": "e",
+              "confidence": 99.56285095214844,
+              "baseline": {
+               "x0": 43,
+               "y0": 80,
+               "x1": 120,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 58,
+               "y0": 56,
+               "x1": 75,
+               "y1": 80
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "l",
+                "confidence": 99.55059051513672
+               }
+              ],
+              "image": null,
+              "text": "l",
+              "confidence": 99.55059051513672,
+              "baseline": {
+               "x0": 43,
+               "y0": 80,
+               "x1": 120,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 66,
+               "y0": 56,
+               "x1": 90,
+               "y1": 80
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "l",
+                "confidence": 99.36608123779297
+               }
+              ],
+              "image": null,
+              "text": "l",
+              "confidence": 99.36608123779297,
+              "baseline": {
+               "x0": 43,
+               "y0": 80,
+               "x1": 120,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 96,
+               "y0": 56,
+               "x1": 99,
+               "y1": 80
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "o",
+                "confidence": 99.32002258300781
+               }
+              ],
+              "image": null,
+              "text": "o",
+              "confidence": 99.32002258300781,
+              "baseline": {
+               "x0": 43,
+               "y0": 80,
+               "x1": 120,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 104,
+               "y0": 62,
+               "x1": 120,
+               "y1": 80
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             }
+            ],
+            "choices": [
+             {
+              "text": "Hello",
+              "confidence": 95.24017333984375
+             }
+            ],
+            "text": "Hello",
+            "confidence": 95.24017333984375,
+            "baseline": {
+             "x0": 43,
+             "y0": 80,
+             "x1": 120,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 43,
+             "y0": 56,
+             "x1": 120,
+             "y1": 80
+            },
+            "is_numeric": false,
+            "in_dictionary": true,
+            "direction": "LEFT_TO_RIGHT",
+            "language": "eng",
+            "is_bold": false,
+            "is_italic": false,
+            "is_underlined": false,
+            "is_monospace": false,
+            "is_serif": false,
+            "is_smallcaps": false,
+            "font_size": 32,
+            "font_id": -1,
+            "font_name": ""
+           },
+           {
+            "symbols": [
+             {
+              "choices": [
+               {
+                "text": "w",
+                "confidence": 99.53059387207031
+               }
+              ],
+              "image": null,
+              "text": "w",
+              "confidence": 99.53059387207031,
+              "baseline": {
+               "x0": 132,
+               "y0": 80,
+               "x1": 216,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 132,
+               "y0": 62,
+               "x1": 156,
+               "y1": 80
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "o",
+                "confidence": 99.57077026367188
+               }
+              ],
+              "image": null,
+              "text": "o",
+              "confidence": 99.57077026367188,
+              "baseline": {
+               "x0": 132,
+               "y0": 80,
+               "x1": 216,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 159,
+               "y0": 62,
+               "x1": 175,
+               "y1": 80
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "r",
+                "confidence": 99.57238006591797
+               }
+              ],
+              "image": null,
+              "text": "r",
+              "confidence": 99.57238006591797,
+              "baseline": {
+               "x0": 132,
+               "y0": 80,
+               "x1": 216,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 169,
+               "y0": 56,
+               "x1": 186,
+               "y1": 80
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "l",
+                "confidence": 99.49917602539062
+               }
+              ],
+              "image": null,
+              "text": "l",
+              "confidence": 99.49917602539062,
+              "baseline": {
+               "x0": 132,
+               "y0": 80,
+               "x1": 216,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 180,
+               "y0": 56,
+               "x1": 196,
+               "y1": 80
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "d",
+                "confidence": 99.41078186035156
+               }
+              ],
+              "image": null,
+              "text": "d",
+              "confidence": 99.41078186035156,
+              "baseline": {
+               "x0": 132,
+               "y0": 80,
+               "x1": 216,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 201,
+               "y0": 56,
+               "x1": 216,
+               "y1": 80
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             }
+            ],
+            "choices": [
+             {
+              "text": "world",
+              "confidence": 95.87545776367188
+             }
+            ],
+            "text": "world",
+            "confidence": 95.87545776367188,
+            "baseline": {
+             "x0": 132,
+             "y0": 80,
+             "x1": 216,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 132,
+             "y0": 56,
+             "x1": 216,
+             "y1": 80
+            },
+            "is_numeric": false,
+            "in_dictionary": true,
+            "direction": "LEFT_TO_RIGHT",
+            "language": "eng",
+            "is_bold": false,
+            "is_italic": false,
+            "is_underlined": false,
+            "is_monospace": false,
+            "is_serif": false,
+            "is_smallcaps": false,
+            "font_size": 32,
+            "font_id": -1,
+            "font_name": ""
+           },
+           {
+            "symbols": [
+             {
+              "choices": [
+               {
+                "text": "f",
+                "confidence": 99.559326171875
+               }
+              ],
+              "image": null,
+              "text": "f",
+              "confidence": 99.559326171875,
+              "baseline": {
+               "x0": 231,
+               "y0": 80,
+               "x1": 301,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 231,
+               "y0": 56,
+               "x1": 242,
+               "y1": 80
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "r",
+                "confidence": 99.57337951660156
+               }
+              ],
+              "image": null,
+              "text": "r",
+              "confidence": 99.57337951660156,
+              "baseline": {
+               "x0": 231,
+               "y0": 80,
+               "x1": 301,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 244,
+               "y0": 62,
+               "x1": 254,
+               "y1": 80
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "o",
+                "confidence": 99.54719543457031
+               }
+              ],
+              "image": null,
+              "text": "o",
+              "confidence": 99.54719543457031,
+              "baseline": {
+               "x0": 231,
+               "y0": 80,
+               "x1": 301,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 255,
+               "y0": 62,
+               "x1": 271,
+               "y1": 80
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "m",
+                "confidence": 99.57303619384766
+               }
+              ],
+              "image": null,
+              "text": "m",
+              "confidence": 99.57303619384766,
+              "baseline": {
+               "x0": 231,
+               "y0": 80,
+               "x1": 301,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 276,
+               "y0": 62,
+               "x1": 301,
+               "y1": 80
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             }
+            ],
+            "choices": [
+             {
+              "text": "from",
+              "confidence": 96.83037567138672
+             }
+            ],
+            "text": "from",
+            "confidence": 96.83037567138672,
+            "baseline": {
+             "x0": 231,
+             "y0": 80,
+             "x1": 301,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 231,
+             "y0": 56,
+             "x1": 301,
+             "y1": 80
+            },
+            "is_numeric": false,
+            "in_dictionary": true,
+            "direction": "LEFT_TO_RIGHT",
+            "language": "eng",
+            "is_bold": false,
+            "is_italic": false,
+            "is_underlined": false,
+            "is_monospace": false,
+            "is_serif": false,
+            "is_smallcaps": false,
+            "font_size": 32,
+            "font_id": -1,
+            "font_name": ""
+           },
+           {
+            "symbols": [
+             {
+              "choices": [
+               {
+                "text": "a",
+                "confidence": 99.5716781616211
+               }
+              ],
+              "image": null,
+              "text": "a",
+              "confidence": 99.5716781616211,
+              "baseline": {
+               "x0": 316,
+               "y0": 80,
+               "x1": 331,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 316,
+               "y0": 62,
+               "x1": 331,
+               "y1": 80
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             }
+            ],
+            "choices": [
+             {
+              "text": "a",
+              "confidence": 96.99474334716797
+             }
+            ],
+            "text": "a",
+            "confidence": 96.99474334716797,
+            "baseline": {
+             "x0": 316,
+             "y0": 80,
+             "x1": 331,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 316,
+             "y0": 62,
+             "x1": 331,
+             "y1": 80
+            },
+            "is_numeric": false,
+            "in_dictionary": true,
+            "direction": "LEFT_TO_RIGHT",
+            "language": "eng",
+            "is_bold": false,
+            "is_italic": false,
+            "is_underlined": false,
+            "is_monospace": false,
+            "is_serif": false,
+            "is_smallcaps": false,
+            "font_size": 32,
+            "font_id": -1,
+            "font_name": ""
+           },
+           {
+            "symbols": [
+             {
+              "choices": [
+               {
+                "text": "s",
+                "confidence": 99.5709457397461
+               }
+              ],
+              "image": null,
+              "text": "s",
+              "confidence": 99.5709457397461,
+              "baseline": {
+               "x0": 346,
+               "y0": 80,
+               "x1": 475,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 346,
+               "y0": 62,
+               "x1": 359,
+               "y1": 80
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "c",
+                "confidence": 99.45941925048828
+               }
+              ],
+              "image": null,
+              "text": "c",
+              "confidence": 99.45941925048828,
+              "baseline": {
+               "x0": 346,
+               "y0": 80,
+               "x1": 475,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 363,
+               "y0": 62,
+               "x1": 377,
+               "y1": 80
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "a",
+                "confidence": 99.48051452636719
+               }
+              ],
+              "image": null,
+              "text": "a",
+              "confidence": 99.48051452636719,
+              "baseline": {
+               "x0": 346,
+               "y0": 80,
+               "x1": 475,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 380,
+               "y0": 62,
+               "x1": 395,
+               "y1": 80
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "n",
+                "confidence": 99.55889129638672
+               }
+              ],
+              "image": null,
+              "text": "n",
+              "confidence": 99.55889129638672,
+              "baseline": {
+               "x0": 346,
+               "y0": 80,
+               "x1": 475,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 401,
+               "y0": 62,
+               "x1": 416,
+               "y1": 80
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "n",
+                "confidence": 99.53187561035156
+               }
+              ],
+              "image": null,
+              "text": "n",
+              "confidence": 99.53187561035156,
+              "baseline": {
+               "x0": 346,
+               "y0": 80,
+               "x1": 475,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 421,
+               "y0": 62,
+               "x1": 436,
+               "y1": 80
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "e",
+                "confidence": 99.57280731201172
+               }
+              ],
+              "image": null,
+              "text": "e",
+              "confidence": 99.57280731201172,
+              "baseline": {
+               "x0": 346,
+               "y0": 80,
+               "x1": 475,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 440,
+               "y0": 62,
+               "x1": 456,
+               "y1": 80
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "d",
+                "confidence": 99.51427459716797
+               }
+              ],
+              "image": null,
+              "text": "d",
+              "confidence": 99.51427459716797,
+              "baseline": {
+               "x0": 346,
+               "y0": 80,
+               "x1": 475,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 460,
+               "y0": 56,
+               "x1": 475,
+               "y1": 80
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             }
+            ],
+            "choices": [
+             {
+              "text": "scanned",
+              "confidence": 96.21591186523438
+             }
+            ],
+            "text": "scanned",
+            "confidence": 96.21591186523438,
+            "baseline": {
+             "x0": 346,
+             "y0": 80,
+             "x1": 475,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 346,
+             "y0": 56,
+             "x1": 475,
+             "y1": 80
+            },
+            "is_numeric": false,
+            "in_dictionary": true,
+            "direction": "LEFT_TO_RIGHT",
+            "language": "eng",
+            "is_bold": false,
+            "is_italic": false,
+            "is_underlined": false,
+            "is_monospace": false,
+            "is_serif": false,
+            "is_smallcaps": false,
+            "font_size": 32,
+            "font_id": -1,
+            "font_name": ""
+           },
+           {
+            "symbols": [
+             {
+              "choices": [
+               {
+                "text": "p",
+                "confidence": 99.49613952636719
+               }
+              ],
+              "image": null,
+              "text": "p",
+              "confidence": 99.49613952636719,
+              "baseline": {
+               "x0": 492,
+               "y0": 80,
+               "x1": 576,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 492,
+               "y0": 62,
+               "x1": 508,
+               "y1": 87
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "a",
+                "confidence": 99.40402221679688
+               }
+              ],
+              "image": null,
+              "text": "a",
+              "confidence": 99.40402221679688,
+              "baseline": {
+               "x0": 492,
+               "y0": 80,
+               "x1": 576,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 511,
+               "y0": 62,
+               "x1": 526,
+               "y1": 80
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "g",
+                "confidence": 99.54391479492188
+               }
+              ],
+              "image": null,
+              "text": "g",
+              "confidence": 99.54391479492188,
+              "baseline": {
+               "x0": 492,
+               "y0": 80,
+               "x1": 576,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 531,
+               "y0": 62,
+               "x1": 546,
+               "y1": 87
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "e",
+                "confidence": 99.57391357421875
+               }
+              ],
+              "image": null,
+              "text": "e",
+              "confidence": 99.57391357421875,
+              "baseline": {
+               "x0": 492,
+               "y0": 80,
+               "x1": 576,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 542,
+               "y0": 62,
+               "x1": 559,
+               "y1": 87
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": ".",
+                "confidence": 99.56205749511719
+               }
+              ],
+              "image": null,
+              "text": ".",
+              "confidence": 99.56205749511719,
+              "baseline": {
+               "x0": 492,
+               "y0": 80,
+               "x1": 576,
+               "y1": 80,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 551,
+               "y0": 62,
+               "x1": 576,
+               "y1": 80
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             }
+            ],
+            "choices": [
+             {
+              "text": "page.",
+              "confidence": 95.82815551757812
+             }
+            ],
+            "text": "page.",
+            "confidence": 95.82815551757812,
+            "baseline": {
+             "x0": 492,
+             "y0": 80,
+             "x1": 576,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 492,
+             "y0": 62,
+             "x1": 576,
+             "y1": 87
+            },
+            "is_numeric": false,
+            "in_dictionary": true,
+            "direction": "LEFT_TO_RIGHT",
+            "language": "eng",
+            "is_bold": false,
+            "is_italic": false,
+            "is_underlined": false,
+            "is_monospace": false,
+            "is_serif": false,
+            "is_smallcaps": false,
+            "font_size": 32,
+            "font_id": -1,
+            "font_name": ""
+           }
+          ],
+          "text": "Hello world from a scanned page.\n",
+          "confidence": 96.16413879394531,
+          "baseline": {
+           "x0": 43,
+           "y0": 80,
+           "x1": 576,
+           "y1": 80,
+           "has_baseline": true
+          },
+          "rowAttributes": {
+           "row_height": 31,
+           "descenders": 7,
+           "ascenders": 6
+          },
+          "bbox": {
+           "x0": 43,
+           "y0": 56,
+           "x1": 576,
+           "y1": 87
+          }
+         },
+         {
+          "words": [
+           {
+            "symbols": [
+             {
+              "choices": [
+               {
+                "text": "S",
+                "confidence": 99.55647277832031
+               }
+              ],
+              "image": null,
+              "text": "S",
+              "confidence": 99.55647277832031,
+              "baseline": {
+               "x0": 42,
+               "y0": 170,
+               "x1": 154,
+               "y1": 170,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 42,
+               "y0": 147,
+               "x1": 59,
+               "y1": 170
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "e",
+                "confidence": 99.56305694580078
+               }
+              ],
+              "image": null,
+              "text": "e",
+              "confidence": 99.56305694580078,
+              "baseline": {
+               "x0": 42,
+               "y0": 170,
+               "x1": 154,
+               "y1": 170,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 62,
+               "y0": 152,
+               "x1": 78,
+               "y1": 170
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "c",
+                "confidence": 99.5650863647461
+               }
+              ],
+              "image": null,
+              "text": "c",
+              "confidence": 99.5650863647461,
+              "baseline": {
+               "x0": 42,
+               "y0": 170,
+               "x1": 154,
+               "y1": 170,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 82,
+               "y0": 152,
+               "x1": 96,
+               "y1": 170
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "o",
+                "confidence": 99.57222747802734
+               }
+              ],
+              "image": null,
+              "text": "o",
+              "confidence": 99.57222747802734,
+              "baseline": {
+               "x0": 42,
+               "y0": 170,
+               "x1": 154,
+               "y1": 170,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 100,
+               "y0": 152,
+               "x1": 116,
+               "y1": 170
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "n",
+                "confidence": 99.5064926147461
+               }
+              ],
+              "image": null,
+              "text": "n",
+              "confidence": 99.5064926147461,
+              "baseline": {
+               "x0": 42,
+               "y0": 170,
+               "x1": 154,
+               "y1": 170,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 120,
+               "y0": 152,
+               "x1": 135,
+               "y1": 170
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "d",
+                "confidence": 99.55297088623047
+               }
+              ],
+              "image": null,
+              "text": "d",
+              "confidence": 99.55297088623047,
+              "baseline": {
+               "x0": 42,
+               "y0": 170,
+               "x1": 154,
+               "y1": 170,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 139,
+               "y0": 146,
+               "x1": 154,
+               "y1": 170
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             }
+            ],
+            "choices": [
+             {
+              "text": "Second",
+              "confidence": 96.54544067382812
+             }
+            ],
+            "text": "Second",
+            "confidence": 96.54544067382812,
+            "baseline": {
+             "x0": 42,
+             "y0": 170,
+             "x1": 154,
+             "y1": 170,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 42,
+             "y0": 146,
+             "x1": 154,
+             "y1": 170
+            },
+            "is_numeric": false,
+            "in_dictionary": true,
+            "direction": "LEFT_TO_RIGHT",
+            "language": "eng",
+            "is_bold": false,
+            "is_italic": false,
+            "is_underlined": false,
+            "is_monospace": false,
+            "is_serif": false,
+            "is_smallcaps": false,
+            "font_size": 32,
+            "font_id": -1,
+            "font_name": ""
+           },
+           {
+            "symbols": [
+             {
+              "choices": [
+               {
+                "text": "p",
+                "confidence": 99.57069396972656
+               }
+              ],
+              "image": null,
+              "text": "p",
+              "confidence": 99.57069396972656,
+              "baseline": {
+               "x0": 171,
+               "y0": 170,
+               "x1": 332,
+               "y1": 170,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 171,
+               "y0": 152,
+               "x1": 187,
+               "y1": 177
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "a",
+                "confidence": 99.54553985595703
+               }
+              ],
+              "image": null,
+              "text": "a",
+              "confidence": 99.54553985595703,
+              "baseline": {
+               "x0": 171,
+               "y0": 170,
+               "x1": 332,
+               "y1": 170,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 190,
+               "y0": 152,
+               "x1": 205,
+               "y1": 170
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "r",
+                "confidence": 99.57067108154297
+               }
+              ],
+              "image": null,
+              "text": "r",
+              "confidence": 99.57067108154297,
+              "baseline": {
+               "x0": 171,
+               "y0": 170,
+               "x1": 332,
+               "y1": 170,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 211,
+               "y0": 152,
+               "x1": 221,
+               "y1": 170
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "a",
+                "confidence": 99.53628540039062
+               }
+              ],
+              "image": null,
+              "text": "a",
+              "confidence": 99.53628540039062,
+              "baseline": {
+               "x0": 171,
+               "y0": 170,
+               "x1": 332,
+               "y1": 170,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 223,
+               "y0": 152,
+               "x1": 238,
+               "y1": 170
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "g",
+                "confidence": 99.55503845214844
+               }
+              ],
+              "image": null,
+              "text": "g",
+              "confidence": 99.55503845214844,
+              "baseline": {
+               "x0": 171,
+               "y0": 170,
+               "x1": 332,
+               "y1": 170,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 243,
+               "y0": 152,
+               "x1": 258,
+               "y1": 177
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "r",
+                "confidence": 99.48111724853516
+               }
+              ],
+              "image": null,
+              "text": "r",
+              "confidence": 99.48111724853516,
+              "baseline": {
+               "x0": 171,
+               "y0": 170,
+               "x1": 332,
+               "y1": 170,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 264,
+               "y0": 152,
+               "x1": 274,
+               "y1": 170
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "a",
+                "confidence": 99.55866241455078
+               }
+              ],
+              "image": null,
+              "text": "a",
+              "confidence": 99.55866241455078,
+              "baseline": {
+               "x0": 171,
+               "y0": 170,
+               "x1": 332,
+               "y1": 170,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 276,
+               "y0": 152,
+               "x1": 291,
+               "y1": 170
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "p",
+                "confidence": 99.53033447265625
+               }
+              ],
+              "image": null,
+              "text": "p",
+              "confidence": 99.53033447265625,
+              "baseline": {
+               "x0": 171,
+               "y0": 170,
+               "x1": 332,
+               "y1": 170,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 297,
+               "y0": 152,
+               "x1": 313,
+               "y1": 177
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "h",
+                "confidence": 99.47431945800781
+               }
+              ],
+              "image": null,
+              "text": "h",
+              "confidence": 99.47431945800781,
+              "baseline": {
+               "x0": 171,
+               "y0": 170,
+               "x1": 332,
+               "y1": 170,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 317,
+               "y0": 146,
+               "x1": 332,
+               "y1": 170
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             }
+            ],
+            "choices": [
+             {
+              "text": "paragraph",
+              "confidence": 96.32025909423828
+             }
+            ],
+            "text": "paragraph",
+            "confidence": 96.32025909423828,
+            "baseline": {
+             "x0": 171,
+             "y0": 170,
+             "x1": 332,
+             "y1": 170,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 171,
+             "y0": 146,
+             "x1": 332,
+             "y1": 177
+            },
+            "is_numeric": false,
+            "in_dictionary": true,
+            "direction": "LEFT_TO_RIGHT",
+            "language": "eng",
+            "is_bold": false,
+            "is_italic": false,
+            "is_underlined": false,
+            "is_monospace": false,
+            "is_serif": false,
+            "is_smallcaps": false,
+            "font_size": 32,
+            "font_id": -1,
+            "font_name": ""
+           },
+           {
+            "symbols": [
+             {
+              "choices": [
+               {
+                "text": "h",
+                "confidence": 99.47539520263672
+               }
+              ],
+              "image": null,
+              "text": "h",
+              "confidence": 99.47539520263672,
+              "baseline": {
+               "x0": 347,
+               "y0": 170,
+               "x1": 424,
+               "y1": 170,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 347,
+               "y0": 146,
+               "x1": 362,
+               "y1": 170
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "e",
+                "confidence": 99.56784057617188
+               }
+              ],
+              "image": null,
+              "text": "e",
+              "confidence": 99.56784057617188,
+              "baseline": {
+               "x0": 347,
+               "y0": 170,
+               "x1": 424,
+               "y1": 170,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 367,
+               "y0": 152,
+               "x1": 383,
+               "y1": 170
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "r",
+                "confidence": 99.56072998046875
+               }
+              ],
+              "image": null,
+              "text": "r",
+              "confidence": 99.56072998046875,
+              "baseline": {
+               "x0": 347,
+               "y0": 170,
+               "x1": 424,
+               "y1": 170,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 376,
+               "y0": 146,
+               "x1": 393,
+               "y1": 170
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": "e",
+                "confidence": 99.47418975830078
+               }
+              ],
+              "image": null,
+              "text": "e",
+              "confidence": 99.47418975830078,
+              "baseline": {
+               "x0": 347,
+               "y0": 170,
+               "x1": 424,
+               "y1": 170,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 387,
+               "y0": 152,
+               "x1": 415,
+               "y1": 170
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             },
+             {
+              "choices": [
+               {
+                "text": ".",
+                "confidence": 99.5702896118164
+               }
+              ],
+              "image": null,
+              "text": ".",
+              "confidence": 99.5702896118164,
+              "baseline": {
+               "x0": 347,
+               "y0": 170,
+               "x1": 424,
+               "y1": 170,
+               "has_baseline": true
+              },
+              "bbox": {
+               "x0": 420,
+               "y0": 166,
+               "x1": 424,
+               "y1": 170
+              },
+              "is_superscript": false,
+              "is_subscript": false,
+              "is_dropcap": false
+             }
+            ],
+            "choices": [
+             {
+              "text": "here.",
+              "confidence": 96.31935119628906
+             }
+            ],
+            "text": "here.",
+            "confidence": 96.31935119628906,
+            "baseline": {
+             "x0": 347,
+             "y0": 170,
+             "x1": 424,
+             "y1": 170,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 347,
+             "y0": 146,
+             "x1": 424,
+             "y1": 170
+            },
+            "is_numeric": false,
+            "in_dictionary": true,
+            "direction": "LEFT_TO_RIGHT",
+            "language": "eng",
+            "is_bold": false,
+            "is_italic": false,
+            "is_underlined": false,
+            "is_monospace": false,
+            "is_serif": false,
+            "is_smallcaps": false,
+            "font_size": 32,
+            "font_id": -1,
+            "font_name": ""
+           }
+          ],
+          "text": "Second paragraph here.\n",
+          "confidence": 96.39501953125,
+          "baseline": {
+           "x0": 42,
+           "y0": 170,
+           "x1": 424,
+           "y1": 170,
+           "has_baseline": true
+          },
+          "rowAttributes": {
+           "row_height": 31,
+           "descenders": 7,
+           "ascenders": 6
+          },
+          "bbox": {
+           "x0": 42,
+           "y0": 146,
+           "x1": 424,
+           "y1": 177
+          }
+         }
+        ],
+        "text": "Hello world from a scanned page.\nSecond paragraph here.\n",
+        "confidence": 96.24109649658203,
+        "baseline": {
+         "x0": 43,
+         "y0": 80,
+         "x1": 576,
+         "y1": 80,
+         "has_baseline": true
+        },
+        "bbox": {
+         "x0": 42,
+         "y0": 56,
+         "x1": 576,
+         "y1": 177
+        },
+        "is_ltr": true
+       }
+      ],
+      "text": "Hello world from a scanned page.\nSecond paragraph here.\n",
+      "confidence": 96.24109649658203,
+      "baseline": {
+       "x0": 43,
+       "y0": 80,
+       "x1": 576,
+       "y1": 80,
+       "has_baseline": true
+      },
+      "bbox": {
+       "x0": 42,
+       "y0": 56,
+       "x1": 576,
+       "y1": 177
+      },
+      "blocktype": "FLOWING_TEXT",
+      "polygon": null
+     }
+    ],
+    "layoutBlocks": null,
+    "psm": "SINGLE_BLOCK",
+    "oem": "LSTM_ONLY",
+    "version": "5.1.0-280-ge20b",
+    "debug": null,
+    "rotateRadians": 0
+   },
+   "block": {
+    "paragraphs": [
+     {
+      "lines": [
+       {
+        "words": [
+         {
+          "symbols": [
+           {
+            "choices": [
+             {
+              "text": "H",
+              "confidence": 99.55606079101562
+             }
+            ],
+            "image": null,
+            "text": "H",
+            "confidence": 99.55606079101562,
+            "baseline": {
+             "x0": 43,
+             "y0": 80,
+             "x1": 120,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 43,
+             "y0": 57,
+             "x1": 61,
+             "y1": 80
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "e",
+              "confidence": 99.56285095214844
+             }
+            ],
+            "image": null,
+            "text": "e",
+            "confidence": 99.56285095214844,
+            "baseline": {
+             "x0": 43,
+             "y0": 80,
+             "x1": 120,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 58,
+             "y0": 56,
+             "x1": 75,
+             "y1": 80
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "l",
+              "confidence": 99.55059051513672
+             }
+            ],
+            "image": null,
+            "text": "l",
+            "confidence": 99.55059051513672,
+            "baseline": {
+             "x0": 43,
+             "y0": 80,
+             "x1": 120,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 66,
+             "y0": 56,
+             "x1": 90,
+             "y1": 80
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "l",
+              "confidence": 99.36608123779297
+             }
+            ],
+            "image": null,
+            "text": "l",
+            "confidence": 99.36608123779297,
+            "baseline": {
+             "x0": 43,
+             "y0": 80,
+             "x1": 120,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 96,
+             "y0": 56,
+             "x1": 99,
+             "y1": 80
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "o",
+              "confidence": 99.32002258300781
+             }
+            ],
+            "image": null,
+            "text": "o",
+            "confidence": 99.32002258300781,
+            "baseline": {
+             "x0": 43,
+             "y0": 80,
+             "x1": 120,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 104,
+             "y0": 62,
+             "x1": 120,
+             "y1": 80
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           }
+          ],
+          "choices": [
+           {
+            "text": "Hello",
+            "confidence": 95.24017333984375
+           }
+          ],
+          "text": "Hello",
+          "confidence": 95.24017333984375,
+          "baseline": {
+           "x0": 43,
+           "y0": 80,
+           "x1": 120,
+           "y1": 80,
+           "has_baseline": true
+          },
+          "bbox": {
+           "x0": 43,
+           "y0": 56,
+           "x1": 120,
+           "y1": 80
+          },
+          "is_numeric": false,
+          "in_dictionary": true,
+          "direction": "LEFT_TO_RIGHT",
+          "language": "eng",
+          "is_bold": false,
+          "is_italic": false,
+          "is_underlined": false,
+          "is_monospace": false,
+          "is_serif": false,
+          "is_smallcaps": false,
+          "font_size": 32,
+          "font_id": -1,
+          "font_name": ""
+         },
+         {
+          "symbols": [
+           {
+            "choices": [
+             {
+              "text": "w",
+              "confidence": 99.53059387207031
+             }
+            ],
+            "image": null,
+            "text": "w",
+            "confidence": 99.53059387207031,
+            "baseline": {
+             "x0": 132,
+             "y0": 80,
+             "x1": 216,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 132,
+             "y0": 62,
+             "x1": 156,
+             "y1": 80
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "o",
+              "confidence": 99.57077026367188
+             }
+            ],
+            "image": null,
+            "text": "o",
+            "confidence": 99.57077026367188,
+            "baseline": {
+             "x0": 132,
+             "y0": 80,
+             "x1": 216,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 159,
+             "y0": 62,
+             "x1": 175,
+             "y1": 80
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "r",
+              "confidence": 99.57238006591797
+             }
+            ],
+            "image": null,
+            "text": "r",
+            "confidence": 99.57238006591797,
+            "baseline": {
+             "x0": 132,
+             "y0": 80,
+             "x1": 216,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 169,
+             "y0": 56,
+             "x1": 186,
+             "y1": 80
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "l",
+              "confidence": 99.49917602539062
+             }
+            ],
+            "image": null,
+            "text": "l",
+            "confidence": 99.49917602539062,
+            "baseline": {
+             "x0": 132,
+             "y0": 80,
+             "x1": 216,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 180,
+             "y0": 56,
+             "x1": 196,
+             "y1": 80
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "d",
+              "confidence": 99.41078186035156
+             }
+            ],
+            "image": null,
+            "text": "d",
+            "confidence": 99.41078186035156,
+            "baseline": {
+             "x0": 132,
+             "y0": 80,
+             "x1": 216,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 201,
+             "y0": 56,
+             "x1": 216,
+             "y1": 80
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           }
+          ],
+          "choices": [
+           {
+            "text": "world",
+            "confidence": 95.87545776367188
+           }
+          ],
+          "text": "world",
+          "confidence": 95.87545776367188,
+          "baseline": {
+           "x0": 132,
+           "y0": 80,
+           "x1": 216,
+           "y1": 80,
+           "has_baseline": true
+          },
+          "bbox": {
+           "x0": 132,
+           "y0": 56,
+           "x1": 216,
+           "y1": 80
+          },
+          "is_numeric": false,
+          "in_dictionary": true,
+          "direction": "LEFT_TO_RIGHT",
+          "language": "eng",
+          "is_bold": false,
+          "is_italic": false,
+          "is_underlined": false,
+          "is_monospace": false,
+          "is_serif": false,
+          "is_smallcaps": false,
+          "font_size": 32,
+          "font_id": -1,
+          "font_name": ""
+         },
+         {
+          "symbols": [
+           {
+            "choices": [
+             {
+              "text": "f",
+              "confidence": 99.559326171875
+             }
+            ],
+            "image": null,
+            "text": "f",
+            "confidence": 99.559326171875,
+            "baseline": {
+             "x0": 231,
+             "y0": 80,
+             "x1": 301,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 231,
+             "y0": 56,
+             "x1": 242,
+             "y1": 80
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "r",
+              "confidence": 99.57337951660156
+             }
+            ],
+            "image": null,
+            "text": "r",
+            "confidence": 99.57337951660156,
+            "baseline": {
+             "x0": 231,
+             "y0": 80,
+             "x1": 301,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 244,
+             "y0": 62,
+             "x1": 254,
+             "y1": 80
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "o",
+              "confidence": 99.54719543457031
+             }
+            ],
+            "image": null,
+            "text": "o",
+            "confidence": 99.54719543457031,
+            "baseline": {
+             "x0": 231,
+             "y0": 80,
+             "x1": 301,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 255,
+             "y0": 62,
+             "x1": 271,
+             "y1": 80
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "m",
+              "confidence": 99.57303619384766
+             }
+            ],
+            "image": null,
+            "text": "m",
+            "confidence": 99.57303619384766,
+            "baseline": {
+             "x0": 231,
+             "y0": 80,
+             "x1": 301,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 276,
+             "y0": 62,
+             "x1": 301,
+             "y1": 80
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           }
+          ],
+          "choices": [
+           {
+            "text": "from",
+            "confidence": 96.83037567138672
+           }
+          ],
+          "text": "from",
+          "confidence": 96.83037567138672,
+          "baseline": {
+           "x0": 231,
+           "y0": 80,
+           "x1": 301,
+           "y1": 80,
+           "has_baseline": true
+          },
+          "bbox": {
+           "x0": 231,
+           "y0": 56,
+           "x1": 301,
+           "y1": 80
+          },
+          "is_numeric": false,
+          "in_dictionary": true,
+          "direction": "LEFT_TO_RIGHT",
+          "language": "eng",
+          "is_bold": false,
+          "is_italic": false,
+          "is_underlined": false,
+          "is_monospace": false,
+          "is_serif": false,
+          "is_smallcaps": false,
+          "font_size": 32,
+          "font_id": -1,
+          "font_name": ""
+         },
+         {
+          "symbols": [
+           {
+            "choices": [
+             {
+              "text": "a",
+              "confidence": 99.5716781616211
+             }
+            ],
+            "image": null,
+            "text": "a",
+            "confidence": 99.5716781616211,
+            "baseline": {
+             "x0": 316,
+             "y0": 80,
+             "x1": 331,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 316,
+             "y0": 62,
+             "x1": 331,
+             "y1": 80
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           }
+          ],
+          "choices": [
+           {
+            "text": "a",
+            "confidence": 96.99474334716797
+           }
+          ],
+          "text": "a",
+          "confidence": 96.99474334716797,
+          "baseline": {
+           "x0": 316,
+           "y0": 80,
+           "x1": 331,
+           "y1": 80,
+           "has_baseline": true
+          },
+          "bbox": {
+           "x0": 316,
+           "y0": 62,
+           "x1": 331,
+           "y1": 80
+          },
+          "is_numeric": false,
+          "in_dictionary": true,
+          "direction": "LEFT_TO_RIGHT",
+          "language": "eng",
+          "is_bold": false,
+          "is_italic": false,
+          "is_underlined": false,
+          "is_monospace": false,
+          "is_serif": false,
+          "is_smallcaps": false,
+          "font_size": 32,
+          "font_id": -1,
+          "font_name": ""
+         },
+         {
+          "symbols": [
+           {
+            "choices": [
+             {
+              "text": "s",
+              "confidence": 99.5709457397461
+             }
+            ],
+            "image": null,
+            "text": "s",
+            "confidence": 99.5709457397461,
+            "baseline": {
+             "x0": 346,
+             "y0": 80,
+             "x1": 475,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 346,
+             "y0": 62,
+             "x1": 359,
+             "y1": 80
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "c",
+              "confidence": 99.45941925048828
+             }
+            ],
+            "image": null,
+            "text": "c",
+            "confidence": 99.45941925048828,
+            "baseline": {
+             "x0": 346,
+             "y0": 80,
+             "x1": 475,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 363,
+             "y0": 62,
+             "x1": 377,
+             "y1": 80
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "a",
+              "confidence": 99.48051452636719
+             }
+            ],
+            "image": null,
+            "text": "a",
+            "confidence": 99.48051452636719,
+            "baseline": {
+             "x0": 346,
+             "y0": 80,
+             "x1": 475,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 380,
+             "y0": 62,
+             "x1": 395,
+             "y1": 80
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "n",
+              "confidence": 99.55889129638672
+             }
+            ],
+            "image": null,
+            "text": "n",
+            "confidence": 99.55889129638672,
+            "baseline": {
+             "x0": 346,
+             "y0": 80,
+             "x1": 475,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 401,
+             "y0": 62,
+             "x1": 416,
+             "y1": 80
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "n",
+              "confidence": 99.53187561035156
+             }
+            ],
+            "image": null,
+            "text": "n",
+            "confidence": 99.53187561035156,
+            "baseline": {
+             "x0": 346,
+             "y0": 80,
+             "x1": 475,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 421,
+             "y0": 62,
+             "x1": 436,
+             "y1": 80
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "e",
+              "confidence": 99.57280731201172
+             }
+            ],
+            "image": null,
+            "text": "e",
+            "confidence": 99.57280731201172,
+            "baseline": {
+             "x0": 346,
+             "y0": 80,
+             "x1": 475,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 440,
+             "y0": 62,
+             "x1": 456,
+             "y1": 80
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "d",
+              "confidence": 99.51427459716797
+             }
+            ],
+            "image": null,
+            "text": "d",
+            "confidence": 99.51427459716797,
+            "baseline": {
+             "x0": 346,
+             "y0": 80,
+             "x1": 475,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 460,
+             "y0": 56,
+             "x1": 475,
+             "y1": 80
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           }
+          ],
+          "choices": [
+           {
+            "text": "scanned",
+            "confidence": 96.21591186523438
+           }
+          ],
+          "text": "scanned",
+          "confidence": 96.21591186523438,
+          "baseline": {
+           "x0": 346,
+           "y0": 80,
+           "x1": 475,
+           "y1": 80,
+           "has_baseline": true
+          },
+          "bbox": {
+           "x0": 346,
+           "y0": 56,
+           "x1": 475,
+           "y1": 80
+          },
+          "is_numeric": false,
+          "in_dictionary": true,
+          "direction": "LEFT_TO_RIGHT",
+          "language": "eng",
+          "is_bold": false,
+          "is_italic": false,
+          "is_underlined": false,
+          "is_monospace": false,
+          "is_serif": false,
+          "is_smallcaps": false,
+          "font_size": 32,
+          "font_id": -1,
+          "font_name": ""
+         },
+         {
+          "symbols": [
+           {
+            "choices": [
+             {
+              "text": "p",
+              "confidence": 99.49613952636719
+             }
+            ],
+            "image": null,
+            "text": "p",
+            "confidence": 99.49613952636719,
+            "baseline": {
+             "x0": 492,
+             "y0": 80,
+             "x1": 576,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 492,
+             "y0": 62,
+             "x1": 508,
+             "y1": 87
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "a",
+              "confidence": 99.40402221679688
+             }
+            ],
+            "image": null,
+            "text": "a",
+            "confidence": 99.40402221679688,
+            "baseline": {
+             "x0": 492,
+             "y0": 80,
+             "x1": 576,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 511,
+             "y0": 62,
+             "x1": 526,
+             "y1": 80
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "g",
+              "confidence": 99.54391479492188
+             }
+            ],
+            "image": null,
+            "text": "g",
+            "confidence": 99.54391479492188,
+            "baseline": {
+             "x0": 492,
+             "y0": 80,
+             "x1": 576,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 531,
+             "y0": 62,
+             "x1": 546,
+             "y1": 87
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "e",
+              "confidence": 99.57391357421875
+             }
+            ],
+            "image": null,
+            "text": "e",
+            "confidence": 99.57391357421875,
+            "baseline": {
+             "x0": 492,
+             "y0": 80,
+             "x1": 576,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 542,
+             "y0": 62,
+             "x1": 559,
+             "y1": 87
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": ".",
+              "confidence": 99.56205749511719
+             }
+            ],
+            "image": null,
+            "text": ".",
+            "confidence": 99.56205749511719,
+            "baseline": {
+             "x0": 492,
+             "y0": 80,
+             "x1": 576,
+             "y1": 80,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 551,
+             "y0": 62,
+             "x1": 576,
+             "y1": 80
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           }
+          ],
+          "choices": [
+           {
+            "text": "page.",
+            "confidence": 95.82815551757812
+           }
+          ],
+          "text": "page.",
+          "confidence": 95.82815551757812,
+          "baseline": {
+           "x0": 492,
+           "y0": 80,
+           "x1": 576,
+           "y1": 80,
+           "has_baseline": true
+          },
+          "bbox": {
+           "x0": 492,
+           "y0": 62,
+           "x1": 576,
+           "y1": 87
+          },
+          "is_numeric": false,
+          "in_dictionary": true,
+          "direction": "LEFT_TO_RIGHT",
+          "language": "eng",
+          "is_bold": false,
+          "is_italic": false,
+          "is_underlined": false,
+          "is_monospace": false,
+          "is_serif": false,
+          "is_smallcaps": false,
+          "font_size": 32,
+          "font_id": -1,
+          "font_name": ""
+         }
+        ],
+        "text": "Hello world from a scanned page.\n",
+        "confidence": 96.16413879394531,
+        "baseline": {
+         "x0": 43,
+         "y0": 80,
+         "x1": 576,
+         "y1": 80,
+         "has_baseline": true
+        },
+        "rowAttributes": {
+         "row_height": 31,
+         "descenders": 7,
+         "ascenders": 6
+        },
+        "bbox": {
+         "x0": 43,
+         "y0": 56,
+         "x1": 576,
+         "y1": 87
+        }
+       },
+       {
+        "words": [
+         {
+          "symbols": [
+           {
+            "choices": [
+             {
+              "text": "S",
+              "confidence": 99.55647277832031
+             }
+            ],
+            "image": null,
+            "text": "S",
+            "confidence": 99.55647277832031,
+            "baseline": {
+             "x0": 42,
+             "y0": 170,
+             "x1": 154,
+             "y1": 170,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 42,
+             "y0": 147,
+             "x1": 59,
+             "y1": 170
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "e",
+              "confidence": 99.56305694580078
+             }
+            ],
+            "image": null,
+            "text": "e",
+            "confidence": 99.56305694580078,
+            "baseline": {
+             "x0": 42,
+             "y0": 170,
+             "x1": 154,
+             "y1": 170,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 62,
+             "y0": 152,
+             "x1": 78,
+             "y1": 170
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "c",
+              "confidence": 99.5650863647461
+             }
+            ],
+            "image": null,
+            "text": "c",
+            "confidence": 99.5650863647461,
+            "baseline": {
+             "x0": 42,
+             "y0": 170,
+             "x1": 154,
+             "y1": 170,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 82,
+             "y0": 152,
+             "x1": 96,
+             "y1": 170
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "o",
+              "confidence": 99.57222747802734
+             }
+            ],
+            "image": null,
+            "text": "o",
+            "confidence": 99.57222747802734,
+            "baseline": {
+             "x0": 42,
+             "y0": 170,
+             "x1": 154,
+             "y1": 170,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 100,
+             "y0": 152,
+             "x1": 116,
+             "y1": 170
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "n",
+              "confidence": 99.5064926147461
+             }
+            ],
+            "image": null,
+            "text": "n",
+            "confidence": 99.5064926147461,
+            "baseline": {
+             "x0": 42,
+             "y0": 170,
+             "x1": 154,
+             "y1": 170,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 120,
+             "y0": 152,
+             "x1": 135,
+             "y1": 170
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "d",
+              "confidence": 99.55297088623047
+             }
+            ],
+            "image": null,
+            "text": "d",
+            "confidence": 99.55297088623047,
+            "baseline": {
+             "x0": 42,
+             "y0": 170,
+             "x1": 154,
+             "y1": 170,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 139,
+             "y0": 146,
+             "x1": 154,
+             "y1": 170
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           }
+          ],
+          "choices": [
+           {
+            "text": "Second",
+            "confidence": 96.54544067382812
+           }
+          ],
+          "text": "Second",
+          "confidence": 96.54544067382812,
+          "baseline": {
+           "x0": 42,
+           "y0": 170,
+           "x1": 154,
+           "y1": 170,
+           "has_baseline": true
+          },
+          "bbox": {
+           "x0": 42,
+           "y0": 146,
+           "x1": 154,
+           "y1": 170
+          },
+          "is_numeric": false,
+          "in_dictionary": true,
+          "direction": "LEFT_TO_RIGHT",
+          "language": "eng",
+          "is_bold": false,
+          "is_italic": false,
+          "is_underlined": false,
+          "is_monospace": false,
+          "is_serif": false,
+          "is_smallcaps": false,
+          "font_size": 32,
+          "font_id": -1,
+          "font_name": ""
+         },
+         {
+          "symbols": [
+           {
+            "choices": [
+             {
+              "text": "p",
+              "confidence": 99.57069396972656
+             }
+            ],
+            "image": null,
+            "text": "p",
+            "confidence": 99.57069396972656,
+            "baseline": {
+             "x0": 171,
+             "y0": 170,
+             "x1": 332,
+             "y1": 170,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 171,
+             "y0": 152,
+             "x1": 187,
+             "y1": 177
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "a",
+              "confidence": 99.54553985595703
+             }
+            ],
+            "image": null,
+            "text": "a",
+            "confidence": 99.54553985595703,
+            "baseline": {
+             "x0": 171,
+             "y0": 170,
+             "x1": 332,
+             "y1": 170,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 190,
+             "y0": 152,
+             "x1": 205,
+             "y1": 170
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "r",
+              "confidence": 99.57067108154297
+             }
+            ],
+            "image": null,
+            "text": "r",
+            "confidence": 99.57067108154297,
+            "baseline": {
+             "x0": 171,
+             "y0": 170,
+             "x1": 332,
+             "y1": 170,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 211,
+             "y0": 152,
+             "x1": 221,
+             "y1": 170
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "a",
+              "confidence": 99.53628540039062
+             }
+            ],
+            "image": null,
+            "text": "a",
+            "confidence": 99.53628540039062,
+            "baseline": {
+             "x0": 171,
+             "y0": 170,
+             "x1": 332,
+             "y1": 170,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 223,
+             "y0": 152,
+             "x1": 238,
+             "y1": 170
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "g",
+              "confidence": 99.55503845214844
+             }
+            ],
+            "image": null,
+            "text": "g",
+            "confidence": 99.55503845214844,
+            "baseline": {
+             "x0": 171,
+             "y0": 170,
+             "x1": 332,
+             "y1": 170,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 243,
+             "y0": 152,
+             "x1": 258,
+             "y1": 177
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "r",
+              "confidence": 99.48111724853516
+             }
+            ],
+            "image": null,
+            "text": "r",
+            "confidence": 99.48111724853516,
+            "baseline": {
+             "x0": 171,
+             "y0": 170,
+             "x1": 332,
+             "y1": 170,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 264,
+             "y0": 152,
+             "x1": 274,
+             "y1": 170
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "a",
+              "confidence": 99.55866241455078
+             }
+            ],
+            "image": null,
+            "text": "a",
+            "confidence": 99.55866241455078,
+            "baseline": {
+             "x0": 171,
+             "y0": 170,
+             "x1": 332,
+             "y1": 170,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 276,
+             "y0": 152,
+             "x1": 291,
+             "y1": 170
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "p",
+              "confidence": 99.53033447265625
+             }
+            ],
+            "image": null,
+            "text": "p",
+            "confidence": 99.53033447265625,
+            "baseline": {
+             "x0": 171,
+             "y0": 170,
+             "x1": 332,
+             "y1": 170,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 297,
+             "y0": 152,
+             "x1": 313,
+             "y1": 177
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "h",
+              "confidence": 99.47431945800781
+             }
+            ],
+            "image": null,
+            "text": "h",
+            "confidence": 99.47431945800781,
+            "baseline": {
+             "x0": 171,
+             "y0": 170,
+             "x1": 332,
+             "y1": 170,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 317,
+             "y0": 146,
+             "x1": 332,
+             "y1": 170
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           }
+          ],
+          "choices": [
+           {
+            "text": "paragraph",
+            "confidence": 96.32025909423828
+           }
+          ],
+          "text": "paragraph",
+          "confidence": 96.32025909423828,
+          "baseline": {
+           "x0": 171,
+           "y0": 170,
+           "x1": 332,
+           "y1": 170,
+           "has_baseline": true
+          },
+          "bbox": {
+           "x0": 171,
+           "y0": 146,
+           "x1": 332,
+           "y1": 177
+          },
+          "is_numeric": false,
+          "in_dictionary": true,
+          "direction": "LEFT_TO_RIGHT",
+          "language": "eng",
+          "is_bold": false,
+          "is_italic": false,
+          "is_underlined": false,
+          "is_monospace": false,
+          "is_serif": false,
+          "is_smallcaps": false,
+          "font_size": 32,
+          "font_id": -1,
+          "font_name": ""
+         },
+         {
+          "symbols": [
+           {
+            "choices": [
+             {
+              "text": "h",
+              "confidence": 99.47539520263672
+             }
+            ],
+            "image": null,
+            "text": "h",
+            "confidence": 99.47539520263672,
+            "baseline": {
+             "x0": 347,
+             "y0": 170,
+             "x1": 424,
+             "y1": 170,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 347,
+             "y0": 146,
+             "x1": 362,
+             "y1": 170
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "e",
+              "confidence": 99.56784057617188
+             }
+            ],
+            "image": null,
+            "text": "e",
+            "confidence": 99.56784057617188,
+            "baseline": {
+             "x0": 347,
+             "y0": 170,
+             "x1": 424,
+             "y1": 170,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 367,
+             "y0": 152,
+             "x1": 383,
+             "y1": 170
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "r",
+              "confidence": 99.56072998046875
+             }
+            ],
+            "image": null,
+            "text": "r",
+            "confidence": 99.56072998046875,
+            "baseline": {
+             "x0": 347,
+             "y0": 170,
+             "x1": 424,
+             "y1": 170,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 376,
+             "y0": 146,
+             "x1": 393,
+             "y1": 170
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": "e",
+              "confidence": 99.47418975830078
+             }
+            ],
+            "image": null,
+            "text": "e",
+            "confidence": 99.47418975830078,
+            "baseline": {
+             "x0": 347,
+             "y0": 170,
+             "x1": 424,
+             "y1": 170,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 387,
+             "y0": 152,
+             "x1": 415,
+             "y1": 170
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           },
+           {
+            "choices": [
+             {
+              "text": ".",
+              "confidence": 99.5702896118164
+             }
+            ],
+            "image": null,
+            "text": ".",
+            "confidence": 99.5702896118164,
+            "baseline": {
+             "x0": 347,
+             "y0": 170,
+             "x1": 424,
+             "y1": 170,
+             "has_baseline": true
+            },
+            "bbox": {
+             "x0": 420,
+             "y0": 166,
+             "x1": 424,
+             "y1": 170
+            },
+            "is_superscript": false,
+            "is_subscript": false,
+            "is_dropcap": false
+           }
+          ],
+          "choices": [
+           {
+            "text": "here.",
+            "confidence": 96.31935119628906
+           }
+          ],
+          "text": "here.",
+          "confidence": 96.31935119628906,
+          "baseline": {
+           "x0": 347,
+           "y0": 170,
+           "x1": 424,
+           "y1": 170,
+           "has_baseline": true
+          },
+          "bbox": {
+           "x0": 347,
+           "y0": 146,
+           "x1": 424,
+           "y1": 170
+          },
+          "is_numeric": false,
+          "in_dictionary": true,
+          "direction": "LEFT_TO_RIGHT",
+          "language": "eng",
+          "is_bold": false,
+          "is_italic": false,
+          "is_underlined": false,
+          "is_monospace": false,
+          "is_serif": false,
+          "is_smallcaps": false,
+          "font_size": 32,
+          "font_id": -1,
+          "font_name": ""
+         }
+        ],
+        "text": "Second paragraph here.\n",
+        "confidence": 96.39501953125,
+        "baseline": {
+         "x0": 42,
+         "y0": 170,
+         "x1": 424,
+         "y1": 170,
+         "has_baseline": true
+        },
+        "rowAttributes": {
+         "row_height": 31,
+         "descenders": 7,
+         "ascenders": 6
+        },
+        "bbox": {
+         "x0": 42,
+         "y0": 146,
+         "x1": 424,
+         "y1": 177
+        }
+       }
+      ],
+      "text": "Hello world from a scanned page.\nSecond paragraph here.\n",
+      "confidence": 96.24109649658203,
+      "baseline": {
+       "x0": 43,
+       "y0": 80,
+       "x1": 576,
+       "y1": 80,
+       "has_baseline": true
+      },
+      "bbox": {
+       "x0": 42,
+       "y0": 56,
+       "x1": 576,
+       "y1": 177
+      },
+      "is_ltr": true
+     }
+    ],
+    "text": "Hello world from a scanned page.\nSecond paragraph here.\n",
+    "confidence": 96.24109649658203,
+    "baseline": {
+     "x0": 43,
+     "y0": 80,
+     "x1": 576,
+     "y1": 80,
+     "has_baseline": true
+    },
+    "bbox": {
+     "x0": 42,
+     "y0": 56,
+     "x1": 576,
+     "y1": 177
+    },
+    "blocktype": "FLOWING_TEXT",
+    "polygon": null
+   }
+  }
+ ],
+ "confidence": 95
+}

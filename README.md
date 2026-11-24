@@ -7,7 +7,26 @@ sang tiếng Việt để đọc lại sau, mà không muốn copy qua lại gi�
 mãi. Mở file lên, bôi đen đoạn nào thì dịch đoạn đó. Muốn đọc kỹ cả trang thì bật chế độ
 song ngữ, duyệt từng đoạn, rồi xuất ra file để giữ lại.
 
-Phiên bản hiện tại: **ver-02**. Lịch sử thay đổi xem ở [CHANGELOG.md](CHANGELOG.md).
+Phiên bản hiện tại: **v3-ocr** (thêm hiệu ứng scan + OCR; đã sắp xếp lại thư mục, chưa push lên GitHub — ver-02 vẫn là bản đang chạy trên Pages). Lịch sử thay đổi xem ở [CHANGELOG.md](CHANGELOG.md).
+
+## Cấu trúc thư mục
+
+```
+pdf2trans/
+├── index.html            # Trang chính (GitHub Pages chạy từ gốc)
+├── 404.html              # Trang lỗi cho GitHub Pages
+├── server.py             # Server local để thử (python3 server.py / npm run serve)
+├── package.json          # npm script: serve, check, test, test:ocr
+├── src/
+│   ├── js/               # Code chính: app.js, pdf-viewer.js, translator.js
+│   └── css/              # styles.css
+├── tests/                # Bộ kiểm thử + ảnh mẫu OCR (xem tests/README.md)
+├── docs/                 # Báo cáo đánh giá, kiến trúc, spec và kết quả kiểm thử
+├── design-system/        # Design system ui-ux-pro-max (MASTER + page app)
+├── .github/workflows/    # CI tối thiểu (syntax + test giả lập)
+├── SECURITY.md           # Chính sách khóa API và dữ liệu
+└── .specify/             # Hiến chương + spec-kit
+```
 
 ## Tool này làm được gì
 
@@ -16,6 +35,8 @@ Phiên bản hiện tại: **ver-02**. Lịch sử thay đổi xem ở [CHANGELO
 - **Song ngữ:** một bên là trang PDF gốc, một bên là bản dịch tiếng Việt theo từng đoạn.
 - **Lưu bản dịch:** bản dịch được lưu theo từng file PDF trong trình duyệt. Tắt tab,
   mở lại file đó thì bản dịch cũ vẫn còn, không phải dịch lại từ đầu.
+- **Quét OCR (bản thử v3-ocr):** mở thêm file ảnh, hoặc trang PDF scan — bấm nút “Quét OCR trang này” để nhận dạng chữ tiếng Anh rồi dịch như PDF thường. Lần đầu chạy cần mạng để tải dữ liệu OCR.
+- **Hiệu ứng scan (bản thử v2-scan):** lúc dịch trang song ngữ, một vạch scan quét trang PDF và khoanh khung từng đoạn vừa tìm được, có nút bật/tắt ở pane Bản dịch.
 - **Duyệt từng đoạn:** đoạn nào đã đọc kỹ và ưng ý thì bấm duyệt. Đoạn đã duyệt được
   đánh dấu riêng, lúc xuất file cũng ghi rõ.
 - **Xuất file:** tải toàn bộ bản dịch đã lưu về dạng `.md` hoặc `.json`, sắp theo số trang.
@@ -124,22 +145,6 @@ git push -u origin main
 
 Bản trên Pages chạy giống hệt bản local, vì tool không cần backend. Chỉ có
 `server.py` là không dùng tới trên Pages — file đó chỉ phục vụ chạy local.
-
-## Cấu trúc thư mục
-
-```text
-.
-├── index.html        # Giao diện chính
-├── styles.css        # Giao diện (dark theme)
-├── app.js            # Điều khiển chính: tải file, tooltip, song ngữ, lưu/xuất
-├── pdf-viewer.js     # Render PDF bằng PDF.js, trích đoạn theo tọa độ dòng
-├── translator.js     # Engine dịch: Google Free, MyMemory fallback, Gemini
-├── server.py         # Server tĩnh local (chỉ localhost, cổng 16051)
-├── README.md         # Bài này
-├── CHANGELOG.md      # Lịch sử thay đổi theo phiên bản
-├── LICENSE           # MIT
-└── .gitignore
-```
 
 ## Công nghệ
 

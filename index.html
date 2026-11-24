@@ -7,15 +7,19 @@
   <!-- Google Fonts & Font Awesome Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- PDF.js CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+  <!-- Tesseract.js CDN (OCR, v3-ocr) - chi tai khi trang load, OCR chi chay khi bam nut -->
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.0/dist/tesseract.min.js"></script>
   
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="src/css/styles.css">
 </head>
 <body class="dark-theme">
+  <a class="skip-link" href="#appMain">Bỏ qua tới nội dung chính</a>
   <!-- Top Navigation Bar -->
   <header class="app-header">
     <div class="brand">
@@ -30,11 +34,11 @@
     <div class="toolbar-center">
       <!-- Mode Switcher -->
       <div class="mode-toggle">
-        <button id="btnModeSelect" class="btn-mode active" title="Dịch quét chọn khi bôi đen text">
-          <i class="fa-solid fa-i-cursor"></i> <span>Quét chọn</span>
+        <button id="btnModeSelect" class="btn-mode active" title="Dịch quét chọn khi bôi đen text" aria-pressed="true">
+          <i class="fa-solid fa-i-cursor" aria-hidden="true"></i> <span>Quét chọn</span>
         </button>
-        <button id="btnModeBilingual" class="btn-mode" title="Xem song ngữ Tiếng Anh | Tiếng Việt">
-          <i class="fa-solid fa-columns"></i> <span>Song ngữ</span>
+        <button id="btnModeBilingual" class="btn-mode" title="Xem song ngữ Tiếng Anh | Tiếng Việt" aria-pressed="false">
+          <i class="fa-solid fa-columns" aria-hidden="true"></i> <span>Song ngữ</span>
         </button>
       </div>
 
@@ -42,42 +46,42 @@
 
       <!-- PDF Navigation & Zoom -->
       <div class="pdf-controls">
-        <button id="btnPrevPage" class="btn-icon" title="Trang trước"><i class="fa-solid fa-chevron-left"></i></button>
-        <span class="page-info">Trang <input type="number" id="pageNumInput" value="1" min="1"> / <span id="pageCount">0</span></span>
-        <button id="btnNextPage" class="btn-icon" title="Trang sau"><i class="fa-solid fa-chevron-right"></i></button>
+        <button id="btnPrevPage" class="btn-icon" title="Trang trước" aria-label="Trang trước"><i class="fa-solid fa-chevron-left"></i></button>
+        <span class="page-info">Trang <input type="number" id="pageNumInput" value="1" min="1" aria-label="Số trang hiện tại"> / <span id="pageCount">0</span></span>
+        <button id="btnNextPage" class="btn-icon" title="Trang sau" aria-label="Trang sau"><i class="fa-solid fa-chevron-right"></i></button>
         
         <div class="divider"></div>
 
-        <button id="btnZoomOut" class="btn-icon" title="Thu nhỏ"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+        <button id="btnZoomOut" class="btn-icon" title="Thu nhỏ" aria-label="Thu nhỏ"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
         <span id="zoomLevel">100%</span>
-        <button id="btnZoomIn" class="btn-icon" title="Phóng to"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+        <button id="btnZoomIn" class="btn-icon" title="Phóng to" aria-label="Phóng to"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
       </div>
     </div>
 
     <div class="toolbar-right">
       <!-- File Upload Button -->
-      <label for="pdfFileInput" class="btn-primary" title="Tải file PDF của bạn">
-        <i class="fa-solid fa-upload"></i> <span>Mở file PDF</span>
+      <label for="pdfFileInput" class="btn-primary" title="Tải file PDF hoặc ảnh của bạn">
+        <i class="fa-solid fa-upload" aria-hidden="true"></i> <span>Mở file PDF / Ảnh</span>
       </label>
-      <input type="file" id="pdfFileInput" accept="application/pdf" style="display: none;">
+      <input type="file" id="pdfFileInput" accept="application/pdf,image/*" style="display: none;">
 
       <!-- Settings / API Key Button -->
-      <button id="btnSettings" class="btn-icon" title="Cấu hình API Engine">
+      <button id="btnSettings" class="btn-icon" title="Cấu hình API Engine" aria-label="Cấu hình API Engine">
         <i class="fa-solid fa-gear"></i>
       </button>
     </div>
   </header>
 
   <!-- Main Content Layout -->
-  <main class="app-main">
+  <main class="app-main" id="appMain" tabindex="-1">
     <!-- Drop Zone / Empty State -->
     <div id="dropZone" class="drop-zone hidden">
       <div class="drop-zone-card">
         <div class="drop-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-        <h2>Kéo & thả file PDF vào đây</h2>
-        <p>Hỗ trợ tài liệu Tiếng Anh để dịch sang Tiếng Việt</p>
+        <h2>Kéo & thả file PDF hoặc ảnh vào đây</h2>
+        <p>Hỗ trợ tài liệu Tiếng Anh để dịch sang Tiếng Việt — PDF scan và ảnh thì bấm “Quét OCR” để nhận dạng chữ trước</p>
         <button class="btn-primary" onclick="document.getElementById('pdfFileInput').click()">
-          <i class="fa-solid fa-folder-open"></i> Chọn file PDF từ máy
+          <i class="fa-solid fa-folder-open" aria-hidden="true"></i> Chọn file PDF từ máy
         </button>
         <div class="sample-loader">
           <span>Hoặc</span>
@@ -108,7 +112,7 @@
 
         <!-- Sync Scroll Divider -->
         <div class="split-divider">
-          <button id="btnToggleSync" class="btn-sync active" title="Tắt/Bật đồng bộ cuộn trang">
+          <button id="btnToggleSync" class="btn-sync active" title="Tắt/Bật đồng bộ cuộn trang" aria-label="Bật hoặc tắt đồng bộ cuộn trang" aria-pressed="true">
             <i class="fa-solid fa-link"></i>
           </button>
         </div>
@@ -116,16 +120,18 @@
         <!-- Right Panel: Translated Vietnamese Content -->
         <div class="pane pane-right">
           <div class="pane-header">
-            <h3><i class="fa-solid fa-language"></i> Bản dịch (Tiếng Việt)</h3>
+            <h3><i class="fa-solid fa-language" aria-hidden="true"></i> Bản dịch (Tiếng Việt)</h3>
           <div class="pane-header-actions">
-            <button id="btnTranslateAll" class="btn-small"><i class="fa-solid fa-wand-magic-sparkles"></i> Dịch trang này</button>
-            <button id="btnExportMd" class="btn-small" title="Xuất toàn bộ bản dịch đã lưu ra file Markdown"><i class="fa-solid fa-file-arrow-down"></i> Xuất .md</button>
-            <button id="btnExportJson" class="btn-small" title="Xuất toàn bộ bản dịch đã lưu ra file JSON"><i class="fa-solid fa-file-code"></i> Xuất .json</button>
+            <button id="btnTranslateAll" class="btn-small"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> Dịch trang này</button>
+            <button id="btnOcrPage" class="btn-small" title="Nhận dạng chữ (OCR) trên trang/ảnh hiện tại — dùng cho PDF scan và ảnh"><i class="fa-solid fa-eye" aria-hidden="true"></i> Quét OCR trang này</button>
+            <button id="btnToggleScanFx" class="btn-small" title="Bật/tắt hiệu ứng quét trang (scan)" aria-pressed="true"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> Scan: Bật</button>
+            <button id="btnExportMd" class="btn-small" title="Xuất toàn bộ bản dịch đã lưu ra file Markdown"><i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> Xuất .md</button>
+            <button id="btnExportJson" class="btn-small" title="Xuất toàn bộ bản dịch đã lưu ra file JSON"><i class="fa-solid fa-file-code" aria-hidden="true"></i> Xuất .json</button>
           </div>
           </div>
           <div class="pane-content" id="translationPanel">
             <div class="empty-translation-state">
-              <i class="fa-solid fa-language"></i>
+              <i class="fa-solid fa-language" aria-hidden="true"></i>
               <p>Bản dịch tiếng Việt sẽ tự động xuất hiện ở đây theo từng đoạn tương ứng. Bản dịch được lưu trong trình duyệt theo file PDF, bấm “Duyệt đoạn này” để đánh dấu, dùng nút Xuất .md / .json để tải về.</p>
             </div>
           </div>
@@ -138,12 +144,12 @@
   <div id="translationTooltip" class="translation-tooltip hidden">
     <div class="tooltip-header">
       <div class="tooltip-title">
-        <i class="fa-solid fa-sparkles"></i> Bản dịch
+        <i class="fa-solid fa-sparkles" aria-hidden="true"></i> Bản dịch
       </div>
       <div class="tooltip-actions">
-        <button id="btnSpeak" class="btn-tooltip-icon" title="Đọc phát âm (EN)"><i class="fa-solid fa-volume-high"></i></button>
-        <button id="btnCopy" class="btn-tooltip-icon" title="Sao chép bản dịch"><i class="fa-regular fa-copy"></i></button>
-        <button id="btnCloseTooltip" class="btn-tooltip-icon" title="Đóng"><i class="fa-solid fa-xmark"></i></button>
+        <button id="btnSpeak" class="btn-tooltip-icon" title="Đọc phát âm (EN)" aria-label="Đọc phát âm tiếng Anh"><i class="fa-solid fa-volume-high"></i></button>
+        <button id="btnCopy" class="btn-tooltip-icon" title="Sao chép bản dịch" aria-label="Sao chép bản dịch"><i class="fa-regular fa-copy"></i></button>
+        <button id="btnCloseTooltip" class="btn-tooltip-icon" title="Đóng" aria-label="Đóng bản dịch"><i class="fa-solid fa-xmark"></i></button>
       </div>
     </div>
     <div class="tooltip-body">
@@ -156,11 +162,11 @@
   </div>
 
   <!-- Settings Modal (Engine & Gemini Key) -->
-  <div id="settingsModal" class="modal-backdrop hidden">
+  <div id="settingsModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
     <div class="modal-card">
       <div class="modal-header">
-        <h3><i class="fa-solid fa-sliders"></i> Cấu hình Translation Engine</h3>
-        <button id="btnCloseModal" class="btn-icon-plain"><i class="fa-solid fa-xmark"></i></button>
+        <h3 id="settingsTitle"><i class="fa-solid fa-sliders" aria-hidden="true"></i> Cấu hình Translation Engine</h3>
+        <button id="btnCloseModal" class="btn-icon-plain" aria-label="Đóng cài đặt"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
         <div class="form-group">
@@ -184,8 +190,8 @@
   </div>
 
   <!-- Scripts -->
-  <script src="pdf-viewer.js"></script>
-  <script src="translator.js"></script>
-  <script src="app.js"></script>
+  <script src="src/js/pdf-viewer.js"></script>
+  <script src="src/js/translator.js"></script>
+  <script src="src/js/app.js"></script>
 </body>
 </html>
