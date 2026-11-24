@@ -136,16 +136,6 @@ git remote add origin https://github.com/TongQuocTuan/pdf2trans.git
 git push -u origin main
 ```
 
-### Bật GitHub Pages (để dùng online, không cần chạy server)
-
-1. Vào repo trên GitHub, chọn **Settings > Pages**.
-2. Ở **Build and deployment**, chọn **Deploy from a branch**.
-3. Chọn branch `main`, thư mục `/ (root)`, bấm **Save**.
-4. Đợi một lúc rồi mở `https://TongQuocTuan.github.io/pdf2trans/`.
-
-Bản trên Pages chạy giống hệt bản local, vì tool không cần backend. Chỉ có
-`server.py` là không dùng tới trên Pages — file đó chỉ phục vụ chạy local.
-
 ## Công nghệ
 
 - [PDF.js](https://mozilla.github.io/pdf.js/) 3.11.174 (CDN) — render PDF và trích text.
