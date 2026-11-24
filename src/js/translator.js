@@ -7,10 +7,19 @@
    - Cache ben trong localStorage (gioi han 500 muc), khong chi RAM
    ========================================================================== */
 
+// U7: model Gemini hien tai — chot 24/11/2026 theo tai lieu chinh thuc
+// https://ai.google.dev/gemini-api/docs/models (trang doc crawled 24/11/2026):
+// - gemini-1.5-flash: model cu, da thay bang dong 2.x/3.x
+// - gemini-2.5-flash: deprecated, tu 01/12/2026 tu dong chuyen sang gemini-3.5-flash-lite
+// - gemini-3.8-flash: badge "Stable", Flash day du the he truoc (khong phai ban Lite)
+// Doi model chi can sua 1 cho nay; hien trong Cài đặt de Tống thấy.
+const GEMINI_MODEL = 'gemini-3.8-flash';
+
 class TranslationEngine {
   constructor() {
     this.cache = new Map();
     this.engine = localStorage.getItem('pdf_trans_engine') || 'google';
+    this.geminiModel = GEMINI_MODEL;
     this.geminiApiKey = localStorage.getItem('pdf_trans_gemini_key') || '';
     // Hang doi
     this.maxConcurrent = 4;
@@ -33,30 +42,55 @@ class TranslationEngine {
     localStorage.setItem('pdf_trans_gemini_key', this.geminiApiKey);
   }
 
-  /* ---- Cache ben ---- */
+  /* ---- Cache ben (U3: IndexedDB, fallback localStorage) ---- */
   _cacheStorageKey() { return 'pdf_trans_cache_v1'; }
 
+  // Nap cache: IndexedDB truoc; neu backend la bo nho (IDB bi chan) thi
+  // doc localStorage cu. Tra ve promise, translate() await truoc khi dung cache.
   _loadPersistentCache() {
-    try {
-      const raw = localStorage.getItem(this._cacheStorageKey());
-      if (!raw) return;
-      const entries = JSON.parse(raw);
-      if (Array.isArray(entries)) {
-        for (const [k, v] of entries.slice(-this.maxCacheEntries)) this.cache.set(k, v);
-      }
-    } catch (e) { /* cache hong thi bo, khong lam hong app */ }
+    this._cacheReady = (async () => {
+      try {
+        if (typeof window !== 'undefined' && window.PdfTransDB) {
+          const rows = await window.PdfTransDB.getAll(window.PdfTransDB.stores.cache);
+          for (const r of rows.slice(-this.maxCacheEntries)) {
+            if (r && typeof r.key === 'string') this.cache.set(r.key, r.value);
+          }
+          if (rows.length) return;
+        }
+      } catch (e) { /* roi xuong localStorage */ }
+      try {
+        if (typeof localStorage === 'undefined') return;
+        const raw = localStorage.getItem(this._cacheStorageKey());
+        if (!raw) return;
+        const entries = JSON.parse(raw);
+        if (Array.isArray(entries)) {
+          for (const [k, v] of entries.slice(-this.maxCacheEntries)) this.cache.set(k, v);
+        }
+      } catch (e) { /* cache hong thi bo, khong lam hong app */ }
+    })();
+    return this._cacheReady;
   }
 
   _savePersistentCache() {
+    const entries = [...this.cache.entries()].slice(-this.maxCacheEntries);
+    // Kho chinh: IndexedDB (fire-and-forget, khong chan dich)
+    if (typeof window !== 'undefined' && window.PdfTransDB && this._cacheReady) {
+      this._cacheReady.then(() => {
+        const jobs = entries.map(([k, v]) =>
+          window.PdfTransDB.put(window.PdfTransDB.stores.cache, { key: k, value: v }));
+        return Promise.all(jobs);
+      }).catch(() => {});
+    }
+    // Ban sao du phong: localStorage cu (best-effort)
     try {
-      const entries = [...this.cache.entries()].slice(-this.maxCacheEntries);
+      if (typeof localStorage === 'undefined') return;
       localStorage.setItem(this._cacheStorageKey(), JSON.stringify(entries));
     } catch (e) {
       // Het quota: xoa nua cu nhat roi thu lai mot lan
       try {
-        const entries = [...this.cache.entries()].slice(-Math.floor(this.maxCacheEntries / 2));
-        this.cache = new Map(entries);
-        localStorage.setItem(this._cacheStorageKey(), JSON.stringify(entries));
+        const kept = entries.slice(-Math.floor(this.maxCacheEntries / 2));
+        this.cache = new Map(kept);
+        localStorage.setItem(this._cacheStorageKey(), JSON.stringify(kept));
       } catch (_e) { /* bo qua */ }
     }
   }
@@ -147,6 +181,9 @@ class TranslationEngine {
     const cleanText = (text || '').trim().replace(/\s+/g, ' ');
     if (!cleanText) return '';
 
+    // Doi cache nap xong (IndexedDB) truoc khi kiem tra cache
+    if (this._cacheReady) await this._cacheReady;
+
     const cacheKey = `${this.engine}:${cleanText}`;
     if (this.cache.has(cacheKey)) return this.cache.get(cacheKey);
 
@@ -164,6 +201,12 @@ class TranslationEngine {
   }
 
   async _translateOneChunk(cleanText) {
+    // U7: chon thang MyMemory lam engine chinh (truoc day chi la fallback
+    // sau Google). Luu y: MyMemory mien phi co han muc ngay, gap 429 thi
+    // doi sang Google hoac Gemini trong Cai dat.
+    if (this.engine === 'mymemory') {
+      return await this.translateWithMyMemory(cleanText);
+    }
     if (this.engine === 'gemini' && this.geminiApiKey) {
       try {
         return await this.translateWithGemini(cleanText);
@@ -211,7 +254,7 @@ class TranslationEngine {
   /** Gemini AI Translation */
   async translateWithGemini(text) {
     return this._withRetry(async () => {
-      const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${this.geminiModel}:generateContent`;
       const payload = {
         contents: [{
           parts: [{

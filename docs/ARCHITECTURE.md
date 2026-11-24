@@ -10,9 +10,14 @@ từ gốc branch `main` (`index.html` ở gốc).
 index.html
 ├── src/js/pdf-viewer.js   # PDF.js: render trang, trích đoạn theo tọa độ, OCR, hiệu ứng scan
 ├── src/js/translator.js   # Engine dịch: Google Free → MyMemory → Gemini, hàng đợi tối đa 4
-└── src/js/app.js          # Điều khiển: mở file, tooltip bôi đen, song ngữ, lưu/xuất
+├── src/js/store-idb.js    # (v4) IndexedDB `pdf2trans` + migration từ localStorage cũ
+├── src/js/glossary.js     # (v4) Từ điển thuật ngữ, áp bằng placeholder trước khi dịch
+├── src/js/docx-export.js  # (v4) Hàm thuần build file .docx (dùng được ở Node test)
+├── src/js/ocr-edit.js     # (v4) Hàm thuần sửa OCR / tìm-thay (tách, gộp, đếm, thay)
+└── src/js/app.js          # Điều khiển: mở file, tooltip bôi đen, song ngữ, lưu/xuất, batch
         │
-        ├── localStorage: pdf_trans_store_v1:<fileId>  (bản dịch theo file)
+        ├── IndexedDB `pdf2trans`: segments / glossaries / cache / meta  (v4, kho chính)
+        ├── localStorage: pdf_trans_store_v1:<fileId>  (bản sao dự phòng, giữ lại sau migrate)
         └── localStorage: pdf_trans_scan_fx             (bật/tắt hiệu ứng scan)
 ```
 

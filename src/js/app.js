@@ -43,6 +43,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Settings Modal Elements
   const btnSettings = document.getElementById('btnSettings');
+  // Find & Replace Elements (U9)
+  const btnFindReplace = document.getElementById('btnFindReplace');
+  const findReplaceModal = document.getElementById('findReplaceModal');
+  const btnCloseFindReplace = document.getElementById('btnCloseFindReplace');
+  const findInput = document.getElementById('findInput');
+  const replaceInput = document.getElementById('replaceInput');
+  const findReplaceCount = document.getElementById('findReplaceCount');
+  const btnReplaceAll = document.getElementById('btnReplaceAll');
+  const findReplaceResult = document.getElementById('findReplaceResult');
+
+  const btnFileProgress = document.getElementById('btnFileProgress');
+  const fileProgressModal = document.getElementById('fileProgressModal');
+  const btnCloseFileProgress = document.getElementById('btnCloseFileProgress');
+  const fileProgressList = document.getElementById('fileProgressList');
   const settingsModal = document.getElementById('settingsModal');
   const btnCloseModal = document.getElementById('btnCloseModal');
   const btnSaveSettings = document.getElementById('btnSaveSettings');
@@ -50,13 +64,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const geminiKeyGroup = document.getElementById('geminiKeyGroup');
   const geminiApiKeyInput = document.getElementById('geminiApiKey');
 
+  // Glossary Elements (U1)
+  const glossaryList = document.getElementById('glossaryList');
+  const glossaryEnInput = document.getElementById('glossaryEn');
+  const glossaryViInput = document.getElementById('glossaryVi');
+  const btnGlossaryAdd = document.getElementById('btnGlossaryAdd');
+  const btnGlossaryExport = document.getElementById('btnGlossaryExport');
+  const btnGlossaryImport = document.getElementById('btnGlossaryImport');
+  const glossaryFileInput = document.getElementById('glossaryFileInput');
+
   // Bilingual Elements
   const translationPanel = document.getElementById('translationPanel');
   const btnTranslateAll = document.getElementById('btnTranslateAll');
+  const btnTranslateDoc = document.getElementById('btnTranslateDoc');
+  const batchProgress = document.getElementById('batchProgress');
+  const batchProgressText = document.getElementById('batchProgressText');
+  const batchProgressFill = document.getElementById('batchProgressFill');
+  const btnBatchPause = document.getElementById('btnBatchPause');
+  const btnBatchStop = document.getElementById('btnBatchStop');
   const btnToggleSync = document.getElementById('btnToggleSync');
   const bilingualPdfWrapper = document.getElementById('bilingualPdfWrapper');
   const btnExportMd = document.getElementById('btnExportMd');
   const btnExportJson = document.getElementById('btnExportJson');
+  const btnExportDocx = document.getElementById('btnExportDocx');
   const btnToggleScanFx = document.getElementById('btnToggleScanFx');
   const btnOcrPage = document.getElementById('btnOcrPage');
 
@@ -109,13 +139,41 @@ document.addEventListener('DOMContentLoaded', () => {
   const translationStore = {
     fileId: null,
     fileName: '',
-    segments: {}, // segHash -> {en, vi, page, order, approved, updatedAt}
+    segments: {}, // segHash -> {en, vi, page, order, approved, updatedAt, status, error}
     _saveTimer: null,
-    load(fileId, fileName) {
+    // load() doc tu IndexedDB truoc, roi ve localStorage cu neu chua co.
+    // Tra ve promise — cac cho goi deu await (deu nam trong ham async).
+    async load(fileId, fileName) {
       this.fileId = fileId;
       this.fileName = fileName || '';
       this.segments = {};
       if (!fileId) return;
+      // U6: ghi dau "mo gan nhat" cua file (fire-and-forget, khong chan mo file)
+      if (window.PdfTransDB) {
+        window.PdfTransDB.put(window.PdfTransDB.stores.meta, {
+          key: `file:${fileId}`,
+          value: { fileName: this.fileName, lastOpenedAt: Date.now() }
+        }).catch(() => {});
+      }
+      // 1. Thu IndexedDB (kho chinh tu U3)
+      try {
+        if (window.PdfTransDB) {
+          const rows = await window.PdfTransDB.getAll(window.PdfTransDB.stores.segments);
+          const mine = rows.filter(r => r.fileId === fileId);
+          if (mine.length) {
+            for (const r of mine) {
+              this.segments[segHash(r.en)] = {
+                en: r.en, vi: r.vi, page: r.page, order: r.order,
+                approved: !!r.approved, updatedAt: r.updatedAt || null,
+                status: r.status || (r.vi ? 'done' : 'pending'), error: r.error || null
+              };
+            }
+            if (mine[0].fileName) this.fileName = mine[0].fileName;
+            return;
+          }
+        }
+      } catch (e) { /* roi xuong localStorage */ }
+      // 2. Fallback: localStorage cu (ban chua migrate, hoac IDB loi)
       try {
         const raw = localStorage.getItem(`pdf_trans_store_v1:${fileId}`);
         if (raw) {
@@ -128,24 +186,65 @@ document.addEventListener('DOMContentLoaded', () => {
     save() {
       if (!this.fileId) return;
       clearTimeout(this._saveTimer);
-      this._saveTimer = setTimeout(() => {
-        try {
-          localStorage.setItem(`pdf_trans_store_v1:${this.fileId}`, JSON.stringify({
-            fileName: this.fileName,
-            savedAt: new Date().toISOString(),
-            segments: this.segments
-          }));
-        } catch (e) {
+      this._saveTimer = setTimeout(() => { this._writeNow(); }, 300);
+    },
+    // Ghi ngay lap tuc (khong doi debounce): dung khi can doc kho ngay sau
+    // do, vd. mo bang tien do ngay sau khi batch dich xong.
+    flushSave() {
+      clearTimeout(this._saveTimer);
+      return this._writeNow();
+    },
+    _writeNow() {
+      if (!this.fileId) return Promise.resolve();
+      let idbDone = Promise.resolve();
+      // Ghi kho chinh: IndexedDB (moi doan 1 ban ghi, id gom ca hash
+      // de khong dung do khi 2 doan cung trang + cung order, vd. tooltip)
+      if (window.PdfTransDB) {
+        const rows = Object.keys(this.segments).map(h => {
+          const s = this.segments[h];
+          return {
+            id: `${this.fileId}:${s.page}:${s.order}:${h.slice(0, 8)}`,
+            fileId: this.fileId, fileName: this.fileName,
+            en: s.en, vi: s.vi || '', page: s.page, order: s.order,
+            approved: !!s.approved, status: s.status || (s.vi ? 'done' : 'pending'),
+            error: s.error || null, updatedAt: s.updatedAt || null
+          };
+        });
+        idbDone = Promise.all(rows.map(r => window.PdfTransDB.put(window.PdfTransDB.stores.segments, r)))
+          .catch(() => { /* IDB loi thi con ban sao localStorage ben duoi */ });
+      }
+      // Ban sao du phong: localStorage cu (best-effort, het quota thi thoi)
+      try {
+        localStorage.setItem(`pdf_trans_store_v1:${this.fileId}`, JSON.stringify({
+          fileName: this.fileName,
+          savedAt: new Date().toISOString(),
+          segments: this.segments
+        }));
+      } catch (e) {
+        if (!window.PdfTransDB || window.PdfTransDB.backendName === 'memory') {
           alert('Khong luu duoc ban dich: bo nho trinh duyet day. Hay xuat file .md/.json ngay.');
         }
-      }, 300);
+      }
+      return idbDone;
     },
     get(en) { return this.segments[segHash(en)] || null; },
     set(en, vi, page, order) {
       this.segments[segHash(en)] = {
         en, vi, page, order,
         approved: (this.segments[segHash(en)] || {}).approved || false,
-        updatedAt: new Date().toISOString()
+        updatedAt: new Date().toISOString(),
+        status: 'done', error: null
+      };
+      this.save();
+    },
+    // Ghi loi dich cua 1 doan (U2 batch): giu lai en/page/order de dich lai sau
+    setError(en, page, order, message) {
+      const prev = this.segments[segHash(en)] || {};
+      this.segments[segHash(en)] = {
+        en, vi: prev.vi || '', page, order,
+        approved: prev.approved || false,
+        updatedAt: new Date().toISOString(),
+        status: 'error', error: message || 'Loi dich'
       };
       this.save();
     },
@@ -153,13 +252,35 @@ document.addEventListener('DOMContentLoaded', () => {
       const s = this.segments[segHash(en)];
       if (s) { s.approved = !!approved; this.save(); }
     },
+    // U8: xoa 1 doan khoi kho (khi sua text goc / tach / gop doan OCR).
+    // Xoa ca ban ghi IDB: id ket bang :<hash8> cua text cu. Store von
+    // khoa theo hash cua en nen 2 doan cung text tren 2 trang chia
+    // chung 1 ban ghi — xoa theo hash la dung ngu nghia hien co.
+    async remove(en) {
+      const h = segHash(en);
+      delete this.segments[h];
+      if (window.PdfTransDB) {
+        try {
+          const rows = await window.PdfTransDB.getAll(window.PdfTransDB.stores.segments);
+          const suffix = ':' + h.slice(0, 8);
+          const mine = rows.filter(r => r.fileId === this.fileId && typeof r.id === 'string' && r.id.endsWith(suffix));
+          await Promise.all(mine.map(r => window.PdfTransDB.del(window.PdfTransDB.stores.segments, r.id)));
+        } catch (e) { /* bo qua — ban sao localStorage se ghi lai o save() */ }
+      }
+      this.save();
+    },
     allSorted() {
       return Object.values(this.segments)
         .sort((a, b) => (a.page - b.page) || (a.order - b.order));
     },
     stats() {
       const all = this.allSorted();
-      return { total: all.length, approved: all.filter(s => s.approved).length };
+      return {
+        total: all.length,
+        translated: all.filter(s => s.status === 'done' || (s.vi && s.status !== 'error')).length,
+        approved: all.filter(s => s.approved).length,
+        failed: all.filter(s => s.status === 'error').length
+      };
     },
     toMarkdown() {
       const all = this.allSorted();
@@ -180,6 +301,18 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   window.translationStore = translationStore;
 
+  // U1: dich 1 doan co ap dung tu dien thuat ngu.
+  // Tra ve {vi, applied, unapplied}: applied = co thuat ngu duoc ap,
+  // unapplied = thuat ngu co trong cau goc ma ban dich khong dung tu da chot.
+  async function translateWithGlossary(text) {
+    if (window.Glossary) await window.Glossary.ready();
+    const applied0 = window.Glossary ? window.Glossary.applyToText(text) : { text, map: [] };
+    const viRaw = await window.translator.translate(applied0.text);
+    const vi = window.Glossary ? window.Glossary.restorePlaceholders(viRaw, applied0.map) : viRaw;
+    const unapplied = window.Glossary ? window.Glossary.findUnapplied(text, vi) : [];
+    return { vi, applied: applied0.map.length > 0, unapplied };
+  }
+
   function downloadFile(filename, content, mime) {
     const blob = new Blob([content], { type: mime });
     const url = URL.createObjectURL(blob);
@@ -189,6 +322,58 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
+  function downloadBlob(filename, blob) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  // U4: nap thu vien docx (vendor, 1.06 MB) CHI KHI bam "Xuat .docx" — khong nang trang luc mo.
+  let docxLibPromise = null;
+  function ensureDocxLib() {
+    if (window.docx) return Promise.resolve(window.docx);
+    if (docxLibPromise) return docxLibPromise;
+    docxLibPromise = new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'vendor/docx-9.16.0.iife.js';
+      script.onload = () => {
+        if (window.docx) resolve(window.docx);
+        else reject(new Error('Thu vien docx tai xong nhung khong khoi tao duoc.'));
+      };
+      script.onerror = () => reject(new Error('Khong tai duoc thu vien docx (vendor/docx-9.16.0.iife.js).'));
+      document.head.appendChild(script);
+    });
+    return docxLibPromise;
+  }
+
+  // U4: xuat .docx — kho A4 mac dinh, tieu de theo file + ngay xuat,
+  // moi trang 1 muc Heading 2, doan chua duyet them "(chua duyet)", doan loi bo qua.
+  async function exportDocx() {
+    const all = translationStore.allSorted().filter(seg => seg.vi);
+    if (!all.length) { alert('Chua co doan dich nao de xuat. Hay dich mot trang truoc.'); return; }
+    const oldLabel = btnExportDocx.innerHTML;
+    btnExportDocx.disabled = true;
+    btnExportDocx.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Đang tạo .docx…';
+    try {
+      const lib = await ensureDocxLib();
+      const doc = window.buildDocxDocument(lib, {
+        fileName: translationStore.fileName || 'PDF',
+        exportedAt: new Date(),
+        stats: translationStore.stats(),
+        segments: all
+      });
+      const blob = await lib.Packer.toBlob(doc);
+      downloadBlob(`${exportBaseName()}-dich.docx`, blob);
+    } catch (err) {
+      alert(`Không xuất được .docx: ${err.message || err}`);
+    } finally {
+      btnExportDocx.disabled = false;
+      btnExportDocx.innerHTML = oldLabel;
+    }
+  }
+
   function exportBaseName() {
     const name = (translationStore.fileName || 'ban-dich').replace(/\.pdf$/i, '');
     return name.replace(/[\\/:*?"<>|]/g, '-');
@@ -196,6 +381,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Show initial DropZone state (chi che do Quet chon, chua co file)
   updateDropZoneVisibility();
+  // U3: chuyen du lieu cu tu localStorage sang IndexedDB (chi 1 lan).
+  // Khong chan giao dien; neu chuyen duoc doan nao thi hien dong ghi chu nho o drop zone.
+  if (window.PdfTransDB) {
+    window.PdfTransDB.migrateFromLocalStorage().then(res => {
+      if (res.migrated && res.segments > 0) {
+        const note = document.getElementById('migrateNote');
+        if (note) {
+          note.textContent = `Đã chuyển ${res.segments} đoạn dịch cũ sang kho lưu trữ mới (IndexedDB).`;
+          note.classList.remove('hidden');
+        }
+      }
+    }).catch(() => {});
+  }
   if (window.pdfViewer) window.pdfViewer.setActiveView('select');
   applyScanFx();
 
@@ -236,7 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isImage) {
       const ok = await window.pdfViewer.loadImageFile(file);
       if (ok) {
-        translationStore.load(window.pdfViewer.fileId, file.name);
+        await translationStore.load(window.pdfViewer.fileId, file.name);
         updateDropZoneVisibility();
         if (currentMode === 'bilingual') {
           await window.pdfViewer.renderCurrentPage();
@@ -260,7 +458,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const buffer = new Uint8Array(this.result);
       const success = await window.pdfViewer.loadDocument(buffer, file.name);
       if (success) {
-        translationStore.load(window.pdfViewer.fileId, file.name);
+        await translationStore.load(window.pdfViewer.fileId, file.name);
         updateDropZoneVisibility();
         if (currentMode === 'bilingual') {
           await window.pdfViewer.renderCurrentPage();
@@ -388,7 +586,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Call Translation API - chi ap dung neu van la request moi nhat
     try {
-      const translation = await window.translator.translate(selectedText);
+      const result = await translateWithGlossary(selectedText);
+      const translation = result.vi;
       if (myId !== tooltipRequestId) return; // da co lua chon moi hon
       tooltipTranslatedText.textContent = translation;
       // Luu ca ban dich boi den (trang hien tai) de xuat sau nay
@@ -432,6 +631,110 @@ document.addEventListener('DOMContentLoaded', () => {
     await renderBilingualPage(true);
   });
 
+  // ------------------------------------------------------------------------
+  // U2: Dich het — dich lan luot moi trang, co tien do, tam dung/tiep tuc.
+  // Dung lai hang doi dich hien co (toi da 4 request); doan da co trong
+  // store/cache thi bo qua, khong dich lai. Loi 1 doan khong dung ca batch.
+  // ------------------------------------------------------------------------
+  const batch = { running: false, paused: false, stopped: false, resumeResolve: null };
+
+  function updateBatchProgress(donePages, totalPages, doneSegs, failedSegs, extra = '') {
+    if (!batchProgress) return;
+    const pct = totalPages ? Math.round((donePages / totalPages) * 100) : 0;
+    batchProgressFill.style.width = `${pct}%`;
+    batchProgressText.textContent =
+      `Đang dịch trang ${Math.min(donePages + 1, totalPages)}/${totalPages} — ${doneSegs} đoạn xong, ${failedSegs} đoạn lỗi${extra}`;
+  }
+
+  function waitForResume() {
+    return new Promise(resolve => { batch.resumeResolve = resolve; });
+  }
+
+  async function translateWholeDoc() {
+    if (batch.running) return;
+    if (!window.pdfViewer.pdfDoc && window.pdfViewer.docType !== 'image') {
+      alert('Chưa mở file nào.');
+      return;
+    }
+    if (currentMode !== 'bilingual') {
+      alert('Bấm sang chế độ Song ngữ trước rồi bấm “Dịch hết”.');
+      return;
+    }
+    const totalPages = window.pdfViewer.totalPages || 1;
+    batch.running = true;
+    batch.paused = false;
+    batch.stopped = false;
+    batchProgress.classList.remove('hidden');
+    btnBatchPause.textContent = 'Tạm dừng';
+    btnBatchPause.classList.remove('hidden');
+    btnBatchStop.textContent = 'Dừng hẳn';
+    btnTranslateDoc.disabled = true;
+    btnTranslateAll.disabled = true;
+
+    let donePages = 0;
+    let doneSegs = 0;
+    let failedSegs = 0;
+    try {
+      for (let page = 1; page <= totalPages; page++) {
+        if (batch.stopped) break;
+        if (batch.paused) {
+          batchProgressText.textContent = `Đã tạm dừng ở trang ${page}/${totalPages} — ${doneSegs} đoạn xong, ${failedSegs} đoạn lỗi. Bấm “Tiếp tục” để dịch tiếp.`;
+          await waitForResume();
+          if (batch.stopped) break;
+          btnBatchPause.textContent = 'Tạm dừng';
+        }
+        updateBatchProgress(donePages, totalPages, doneSegs, failedSegs);
+        await window.pdfViewer.goToPage(page);
+        const { jobs, saved } = await renderBilingualPage();
+        const results = await Promise.allSettled(jobs);
+        doneSegs += saved + results.filter(r => r.status === 'fulfilled' && r.value && r.value.ok).length;
+        failedSegs += results.filter(r => r.status === 'fulfilled' && r.value && !r.value.ok).length
+          + results.filter(r => r.status === 'rejected').length;
+        donePages = page;
+        updateBatchProgress(donePages, totalPages, doneSegs, failedSegs);
+      }
+    } finally {
+      batch.running = false;
+      btnTranslateDoc.disabled = false;
+      btnTranslateAll.disabled = false;
+      // Ghi het ban dich xuong kho truoc khi bao xong (bang tien do doc tu kho)
+      await translationStore.flushSave();
+      if (batchProgressFill) batchProgressFill.style.width = totalPages ? `${Math.round((donePages / totalPages) * 100)}%` : '0%';
+      if (batch.stopped) {
+        batchProgressText.textContent = `Đã dừng ở trang ${donePages}/${totalPages} — ${doneSegs} đoạn xong, ${failedSegs} đoạn lỗi. Đoạn đã dịch vẫn lưu lại, bấm “Dịch hết” để dịch tiếp.`;
+      } else {
+        batchProgressText.textContent = `Xong: ${doneSegs} đoạn đã dịch, ${failedSegs} đoạn lỗi${failedSegs ? ' (bấm “Dịch trang này” ở trang có lỗi để thử lại)' : ''}.`;
+      }
+      btnBatchPause.classList.add('hidden');
+      btnBatchStop.textContent = 'Đóng';
+    }
+  }
+
+  if (btnTranslateDoc) btnTranslateDoc.addEventListener('click', translateWholeDoc);
+
+  if (btnBatchPause) btnBatchPause.addEventListener('click', () => {
+    if (!batch.running) return;
+    if (batch.paused) {
+      batch.paused = false;
+      btnBatchPause.textContent = 'Tạm dừng';
+      if (batch.resumeResolve) { const r = batch.resumeResolve; batch.resumeResolve = null; r(); }
+    } else {
+      batch.paused = true;
+      btnBatchPause.textContent = 'Tiếp tục';
+    }
+  });
+
+  if (btnBatchStop) btnBatchStop.addEventListener('click', () => {
+    if (batch.running) {
+      batch.stopped = true;
+      if (batch.paused && batch.resumeResolve) {
+        const r = batch.resumeResolve; batch.resumeResolve = null; r();
+      }
+    } else {
+      batchProgress.classList.add('hidden');
+    }
+  });
+
   if (btnExportMd) btnExportMd.addEventListener('click', () => {
     if (!translationStore.allSorted().length) { alert('Chua co doan dich nao de xuat. Hay dich mot trang truoc.'); return; }
     downloadFile(`${exportBaseName()}-dich.md`, translationStore.toMarkdown(), 'text/markdown;charset=utf-8');
@@ -441,6 +744,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!translationStore.allSorted().length) { alert('Chua co doan dich nao de xuat. Hay dich mot trang truoc.'); return; }
     downloadFile(`${exportBaseName()}-dich.json`, translationStore.toJSON(), 'application/json;charset=utf-8');
   });
+
+  if (btnExportDocx) btnExportDocx.addEventListener('click', exportDocx);
 
   if (btnOcrPage) btnOcrPage.addEventListener('click', async () => {
     if (!window.pdfViewer.pdfDoc && window.pdfViewer.docType !== 'image') {
@@ -474,14 +779,69 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // ------------------------------------------------------------------------
+  // U8: Sua tay doan OCR — text goc thanh o sua, luu thi dich lai;
+  // tach tai vi tri con tro; huy thi ve nhu cu.
+  // ------------------------------------------------------------------------
+  function enterOcrEditMode(card, oldText, pageNo, index) {
+    const enDiv = card.querySelector('.card-en');
+    if (!enDiv) return;
+    enDiv.innerHTML = `
+      <textarea class="ocr-edit-textarea" rows="3" aria-label="Sửa text gốc OCR">${escapeHtml(oldText)}</textarea>
+      <div class="ocr-edit-actions">
+        <button class="btn-ocr-save" type="button">💾 Lưu & dịch lại</button>
+        <button class="btn-ocr-split" type="button" title="Tách đoạn tại vị trí con trỏ trong ô sửa">✂️ Tách tại con trỏ</button>
+        <button class="btn-ocr-cancel" type="button">Hủy</button>
+      </div>
+      <p class="help-text">Đặt con trỏ vào chỗ muốn tách rồi bấm "Tách tại con trỏ" — hữu ích khi OCR gộp 2 dòng thành 1 đoạn.</p>`;
+    const ta = enDiv.querySelector('.ocr-edit-textarea');
+    ta.focus();
+    ta.setSelectionRange(ta.value.length, ta.value.length);
+
+    enDiv.querySelector('.btn-ocr-cancel').addEventListener('click', () => { renderBilingualPage(); });
+
+    enDiv.querySelector('.btn-ocr-save').addEventListener('click', async () => {
+      const newText = ta.value.trim().replace(/\s+/g, ' ');
+      if (newText.length < 3) { alert('Text gốc sau khi sửa phải còn ít nhất 3 ký tự.'); return; }
+      if (newText === oldText) { renderBilingualPage(); return; }
+      const paras = window.pdfViewer.ocrParagraphs[pageNo];
+      if (!paras || !paras[index]) { alert('Không tìm thấy đoạn OCR này nữa, thử tải lại trang.'); return; }
+      await translationStore.remove(oldText);
+      paras[index].text = newText;
+      await renderBilingualPage();
+    });
+
+    enDiv.querySelector('.btn-ocr-split').addEventListener('click', async () => {
+      const parts = window.OcrEdit.splitTextAtCursor(ta.value, ta.selectionStart);
+      if (!parts) { alert('Đặt con trỏ vào giữa đoạn (cả 2 phía còn ít nhất 2 ký tự) rồi bấm Tách.'); return; }
+      const paras = window.pdfViewer.ocrParagraphs[pageNo];
+      if (!paras || !paras[index]) { alert('Không tìm thấy đoạn OCR này nữa, thử tải lại trang.'); return; }
+      await translationStore.remove(oldText);
+      const box = paras[index].box;
+      paras.splice(index, 1,
+        { text: parts[0], box },
+        { text: parts[1], box });
+      await renderBilingualPage();
+    });
+  }
+
+  // U2: jobs dich cua trang hien tai (de batch await). renderBilingualPage
+  // tra ve {jobs, saved} — cac cho goi cu khong dung gia tri tra ve nen khong doi hanh vi.
+  let currentPageJobs = [];
+  let currentPageSaved = 0;
+
   async function renderBilingualPage(forceRetranslate = false) {
-    if (!window.pdfViewer.pdfDoc && window.pdfViewer.docType !== 'image') return;
+    if (!window.pdfViewer.pdfDoc && window.pdfViewer.docType !== 'image') return { jobs: [], saved: 0 };
+    currentPageJobs = [];
+    currentPageSaved = 0;
 
     translationPanel.innerHTML = '<div class="empty-translation-state"><i class="fa-solid fa-circle-notch fa-spin"></i><p>Đang trích xuất & dịch toàn bộ trang...</p></div>';
 
     const currentPage = window.pdfViewer.currentPage;
     const parasWithBoxes = await window.pdfViewer.getPageTextBlocksWithBoxes(currentPage);
     const textBlocks = parasWithBoxes.map(p => p.text);
+    // U8: nguon cua tung doan ('ocr' | 'pdf') — chi doan OCR moi co nut Sua/Tach/Gop
+    const paraSources = parasWithBoxes.map(p => p.source || 'pdf');
 
     // v2-scan: vach quet + khung vung tren pane PDF trai, chay song song
     // voi viec dich ben phai (khong await, khong chan dich).
@@ -494,7 +854,7 @@ document.addEventListener('DOMContentLoaded', () => {
       translationPanel.innerHTML = `<div class="empty-translation-state"><i class="fa-solid fa-circle-exclamation"></i><p>${isImage
         ? 'Ảnh này chưa quét OCR nên chưa có chữ để dịch.'
         : 'Trang này không có văn bản dạng text (có thể là PDF scan).'}</p><p>Bấm nút “Quét OCR trang này” ở trên để nhận dạng chữ rồi dịch.</p></div>`;
-      return;
+      return { jobs: [], saved: 0 };
     }
 
     translationPanel.innerHTML = ''; // Clear panel
@@ -503,6 +863,7 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < textBlocks.length; i++) {
       const textEN = textBlocks[i];
       if (!textEN || textEN.length < 3) continue;
+      const isOcr = paraSources[i] === 'ocr';
 
       const saved = forceRetranslate ? null : translationStore.get(textEN);
       const card = document.createElement('div');
@@ -512,6 +873,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="card-vi">${saved ? escapeHtml(saved.vi) : '<i class="fa-solid fa-circle-notch fa-spin"></i> Đang dịch...'}</div>
         <div class="card-actions">
           <button class="btn-approve" type="button">${saved && saved.approved ? '✅ Đã duyệt' : '⬜ Duyệt đoạn này'}</button>
+          ${isOcr ? '<button class="btn-ocr-edit" type="button" title="Sửa text gốc OCR rồi dịch lại">✏️ Sửa text gốc</button>' : ''}
+          ${isOcr && i < textBlocks.length - 1 ? '<button class="btn-ocr-merge" type="button" title="Gộp đoạn này với đoạn dưới">🔗 Gộp với đoạn dưới</button>' : ''}
         </div>
       `;
       translationPanel.appendChild(card);
@@ -527,13 +890,50 @@ document.addEventListener('DOMContentLoaded', () => {
         approveBtn.textContent = next ? '✅ Đã duyệt' : '⬜ Duyệt đoạn này';
       });
 
-      if (saved) continue; // dung lai ban dich da luu, khong goi API
+      // U8: sua tay / tach / gop doan OCR (chi doan OCR moi co nut)
+      if (isOcr) {
+        const editBtn = card.querySelector('.btn-ocr-edit');
+        if (editBtn) editBtn.addEventListener('click', () => enterOcrEditMode(card, textEN, currentPage, i));
+        const mergeBtn = card.querySelector('.btn-ocr-merge');
+        if (mergeBtn) mergeBtn.addEventListener('click', async () => {
+          const paras = window.pdfViewer.ocrParagraphs[currentPage];
+          const next = paras && paras[i + 1];
+          if (!next) { alert('Đây là đoạn cuối cùng, không còn đoạn dưới để gộp.'); return; }
+          const merged = window.OcrEdit.mergeTexts(textEN, next.text);
+          await translationStore.remove(textEN);
+          await translationStore.remove(next.text);
+          paras[i].text = merged;
+          paras.splice(i + 1, 1);
+          await renderBilingualPage();
+        });
+      }
+
+      if (saved) { currentPageSaved++; continue; } // dung lai ban dich da luu, khong goi API
 
       // Async translate to render progressively - hang doi trong translator gioi han 4
-      window.translator.translate(textEN).then(transVI => {
+      const job = translateWithGlossary(textEN).then(({ vi: transVI, applied, unapplied }) => {
+        // Card co the da bien mat (nguoi dung sua/tach/gop doan trong luc
+        // dich dang chay): bo qua ghi kho, khong de ban dich cu song lai.
+        if (!translationPanel.contains(card)) return { ok: true };
         if (viDiv) viDiv.textContent = transVI;
         translationStore.set(textEN, transVI, currentPage, i);
+        // U1: danh dau doan da ap thuat ngu / canh bao thuat ngu chua ap
+        if (applied) {
+          const badge = document.createElement('span');
+          badge.className = 'glossary-badge';
+          badge.textContent = 'Đã áp thuật ngữ';
+          card.querySelector('.card-actions').appendChild(badge);
+        }
+        if (unapplied.length && viDiv) {
+          const warn = document.createElement('div');
+          warn.className = 'glossary-warn';
+          warn.textContent = 'Chưa áp thuật ngữ: ' + unapplied.map(t => t.en).join(', ');
+          viDiv.appendChild(warn);
+        }
+        return { ok: true };
       }).catch(err => {
+        if (!translationPanel.contains(card)) return { ok: true };
+        translationStore.setError(textEN, currentPage, i, err.message);
         if (viDiv) {
           viDiv.textContent = '';
           const errDiv = document.createElement('div');
@@ -541,8 +941,11 @@ document.addEventListener('DOMContentLoaded', () => {
           errDiv.textContent = `Loi dich: ${err.message}. Bam "Dich trang nay" de thu lai.`;
           viDiv.appendChild(errDiv);
         }
+        return { ok: false };
       });
+      currentPageJobs.push(job);
     }
+    return { jobs: currentPageJobs, saved: currentPageSaved };
   }
 
   // Synchronized Scrolling Toggle
@@ -565,10 +968,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // ------------------------------------------------------------------------
   // Settings Modal (Engine & Gemini Key)
   // ------------------------------------------------------------------------
-  btnSettings.addEventListener('click', () => {
+  btnSettings.addEventListener('click', async () => {
     engineSelect.value = window.translator.engine;
     geminiApiKeyInput.value = window.translator.geminiApiKey;
+    const modelInfo = document.getElementById('geminiModelInfo');
+    if (modelInfo) modelInfo.textContent = `Model đang dùng: ${window.translator.geminiModel} (kiểm tra 24/11/2026 theo tài liệu Google)`;
     toggleGeminiKeyGroup();
+    if (window.Glossary) { await window.Glossary.ready(); renderGlossaryList(); }
     settingsModal.classList.remove('hidden');
   });
 
@@ -593,6 +999,165 @@ document.addEventListener('DOMContentLoaded', () => {
     alert('Đã lưu cấu hình dịch thành công!');
   });
 
+  // ------------------------------------------------------------------------
+  // U6: Bang tien do theo file
+  // ------------------------------------------------------------------------
+  async function renderFileProgress() {
+    if (!fileProgressList) return;
+    await translationStore.flushSave();
+    if (!window.PdfTransDB || !window.computeFileProgress) {
+      fileProgressList.innerHTML = '<p class="glossary-empty">Không đọc được kho lưu trữ.</p>';
+      return;
+    }
+    const [segments, meta] = await Promise.all([
+      window.PdfTransDB.getAll(window.PdfTransDB.stores.segments),
+      window.PdfTransDB.getAll(window.PdfTransDB.stores.meta)
+    ]);
+    const files = window.computeFileProgress(segments, meta);
+    if (!files.length) {
+      fileProgressList.innerHTML = '<p class="glossary-empty">Chưa có file nào được dịch. Mở 1 file PDF và dịch thử 1 trang.</p>';
+      return;
+    }
+    fileProgressList.innerHTML = '';
+    files.forEach(f => {
+      const row = document.createElement('button');
+      row.className = 'file-progress-row';
+      row.type = 'button';
+      const lastOpened = f.lastOpenedAt
+        ? new Date(f.lastOpenedAt).toLocaleString('vi-VN', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })
+        : '—';
+      row.innerHTML = `
+        <span class="file-progress-name">${escapeHtml(f.fileName || f.fileId)}</span>
+        <span class="file-progress-bar"><span class="file-progress-fill" style="width:${f.percent}%"></span></span>
+        <span class="file-progress-meta">Đã dịch ${f.translated}/${f.total} đoạn • Đã duyệt ${f.approved} • ${f.failed} lỗi • ${f.percent}% • Mở gần nhất: ${escapeHtml(lastOpened)}</span>`;
+      row.addEventListener('click', () => {
+        fileProgressModal.classList.add('hidden');
+        // Trinh duyet khong cho mo file tu dong: hoi nguoi dung chon lai file do
+        pdfFileInput.click();
+      });
+      fileProgressList.appendChild(row);
+    });
+  }
+
+  if (btnFileProgress) btnFileProgress.addEventListener('click', async () => {
+    await renderFileProgress();
+    fileProgressModal.classList.remove('hidden');
+  });
+
+  if (btnCloseFileProgress) btnCloseFileProgress.addEventListener('click', () => {
+    fileProgressModal.classList.add('hidden');
+  });
+
+  // ------------------------------------------------------------------------
+  // U9: Tim & thay trong ban dich (toan bo file nay, moi trang)
+  // ------------------------------------------------------------------------
+  function updateFindReplaceCount() {
+    const find = findInput.value;
+    if (!find) {
+      findReplaceCount.textContent = '';
+      btnReplaceAll.disabled = true;
+      return;
+    }
+    const m = window.OcrEdit.countFindMatches(Object.values(translationStore.segments), find);
+    findReplaceCount.textContent = m.segments
+      ? `Tìm thấy ${m.segments} đoạn, ${m.occurrences} chỗ chứa "${find}".`
+      : `Không tìm thấy đoạn nào chứa "${find}".`;
+    btnReplaceAll.disabled = m.segments === 0;
+  }
+
+  if (btnFindReplace) btnFindReplace.addEventListener('click', () => {
+    findReplaceResult.textContent = '';
+    updateFindReplaceCount();
+    findReplaceModal.classList.remove('hidden');
+    findInput.focus();
+  });
+
+  if (btnCloseFindReplace) btnCloseFindReplace.addEventListener('click', () => {
+    findReplaceModal.classList.add('hidden');
+  });
+
+  if (findInput) findInput.addEventListener('input', () => {
+    findReplaceResult.textContent = '';
+    updateFindReplaceCount();
+  });
+
+  if (btnReplaceAll) btnReplaceAll.addEventListener('click', async () => {
+    const find = findInput.value;
+    const replace = replaceInput.value;
+    if (!find) return;
+    const res = window.OcrEdit.findReplaceInSegments(Object.values(translationStore.segments), find, replace);
+    if (!res.changedSegments) { findReplaceResult.textContent = 'Không có đoạn nào thay đổi.'; return; }
+    for (const seg of res.updated) translationStore.segments[segHash(seg.en)] = seg;
+    await translationStore.flushSave();
+    findReplaceResult.textContent = `Đã thay ${res.occurrences} chỗ trong ${res.changedSegments} đoạn. Các đoạn đã thay đã bỏ duyệt — nhớ duyệt lại.`;
+    updateFindReplaceCount();
+    if (currentMode === 'bilingual') await renderBilingualPage();
+  });
+
+  // ------------------------------------------------------------------------
+  // Glossary UI trong modal Cai dat (U1)
+  // ------------------------------------------------------------------------
+  function renderGlossaryList() {
+    if (!glossaryList || !window.Glossary) return;
+    const terms = window.Glossary.terms;
+    if (!terms.length) {
+      glossaryList.innerHTML = '<p class="glossary-empty">Chưa có thuật ngữ nào. Thêm từ đầu tiên ở dưới.</p>';
+      return;
+    }
+    glossaryList.innerHTML = '';
+    terms.forEach(t => {
+      const row = document.createElement('div');
+      row.className = 'glossary-row';
+      row.innerHTML = `<span class="glossary-term"><strong>${escapeHtml(t.en)}</strong> &rarr; ${escapeHtml(t.vi)}</span>`;
+      const del = document.createElement('button');
+      del.className = 'btn-icon-plain';
+      del.type = 'button';
+      del.title = 'Xóa thuật ngữ này';
+      del.setAttribute('aria-label', `Xóa thuật ngữ ${t.en}`);
+      del.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+      del.addEventListener('click', async () => {
+        await window.Glossary.removeTerm(t.en);
+        renderGlossaryList();
+      });
+      row.appendChild(del);
+      glossaryList.appendChild(row);
+    });
+  }
+
+  if (btnGlossaryAdd) btnGlossaryAdd.addEventListener('click', async () => {
+    try {
+      await window.Glossary.addTerm(glossaryEnInput.value, glossaryViInput.value);
+      glossaryEnInput.value = '';
+      glossaryViInput.value = '';
+      renderGlossaryList();
+      glossaryEnInput.focus();
+    } catch (err) {
+      alert(err.message || 'Không thêm được thuật ngữ.');
+    }
+  });
+
+  if (btnGlossaryExport) btnGlossaryExport.addEventListener('click', () => {
+    downloadFile('tu-dien-thuat-ngu.json', window.Glossary.toJSON(), 'application/json;charset=utf-8');
+  });
+
+  if (btnGlossaryImport) btnGlossaryImport.addEventListener('click', () => {
+    glossaryFileInput.click();
+  });
+
+  if (glossaryFileInput) glossaryFileInput.addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    e.target.value = '';
+    if (!file) return;
+    try {
+      const text = await file.text();
+      await window.Glossary.fromJSON(text);
+      renderGlossaryList();
+      alert(`Đã nhập ${window.Glossary.terms.length} thuật ngữ.`);
+    } catch (err) {
+      alert(err.message || 'Không đọc được file từ điển.');
+    }
+  });
+
   // Helper
   function escapeHtml(text) {
     return String(text)
@@ -615,7 +1180,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const success = await window.pdfViewer.loadDocument(bytes, 'sample.pdf');
     if (success) {
-      translationStore.load(window.pdfViewer.fileId, 'sample.pdf');
+      await translationStore.load(window.pdfViewer.fileId, 'sample.pdf');
       updateDropZoneVisibility();
     }
   }

@@ -1,13 +1,13 @@
 {
   "name": "pdf2trans",
-  "version": "3.0.0",
-  "description": "Dịch PDF tiếng Anh sang tiếng Việt ngay trong trình duyệt, có OCR cho ảnh và PDF scan.",
+  "version": "4.0.0",
+  "description": "Dịch PDF tiếng Anh sang tiếng Việt ngay trong trình duyệt: từ điển thuật ngữ, dịch hết, IndexedDB, xuất .docx, có OCR cho ảnh và PDF scan.",
   "private": true,
   "type": "commonjs",
   "scripts": {
     "serve": "python3 server.py",
-    "check": "node --check src/js/app.js && node --check src/js/pdf-viewer.js && node --check src/js/translator.js && python3 -m py_compile server.py",
-    "test": "node tests/mock_ocr.test.js && node tests/mock_scan.test.js",
+    "check": "node --check src/js/app.js && node --check src/js/pdf-viewer.js && node --check src/js/translator.js && node --check src/js/store-idb.js && node --check src/js/glossary.js && node --check src/js/docx-export.js && node --check src/js/file-progress.js && node --check src/js/ocr-edit.js && python3 -m py_compile server.py",
+    "test": "node tests/mock_ocr.test.js && node tests/mock_scan.test.js && node tests/glossary.test.js && node tests/idb-store.test.js && node tests/docx-export.test.js && node tests/pdfjs-vendor.test.js && node tests/file-progress.test.js && node tests/translator-engine.test.js && node tests/ocr-edit.test.js",
     "test:ocr": "node tests/real_ocr.test.js && node tests/real_ocr_2x.test.js && node tests/v3_real_data.test.js",
     "test:all": "npm run check && npm test && npm run test:ocr"
   },

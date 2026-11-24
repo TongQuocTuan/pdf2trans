@@ -1027,3 +1027,238 @@ button {
     display: none;
   }
 }
+
+/* ==========================================================================
+   U1 Glossary + U2 Batch + U3 Migration note (spec 002, v4)
+   ========================================================================== */
+.migrate-note {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+.glossary-list {
+  max-height: 180px;
+  overflow-y: auto;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background: #0b0f19;
+}
+
+.glossary-empty {
+  margin: 0;
+  padding: 10px 12px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+.glossary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid #1e293b;
+  font-size: 14px;
+}
+
+.glossary-row:last-child {
+  border-bottom: none;
+}
+
+.glossary-term {
+  overflow-wrap: anywhere;
+}
+
+.glossary-add {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.glossary-add .form-control {
+  flex: 1;
+  min-width: 0;
+}
+
+.glossary-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.glossary-badge {
+  font-size: 12px;
+  font-weight: 600;
+  color: #0d9488;
+  border: 1px solid #0d9488;
+  border-radius: 999px;
+  padding: 2px 8px;
+  margin-left: 8px;
+  white-space: nowrap;
+}
+
+.glossary-warn {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #f59e0b;
+}
+
+/* U2: thanh tien do dich het */
+.batch-progress {
+  padding: 10px 16px;
+  border-bottom: 1px solid #1e293b;
+  background: #111827;
+}
+
+.batch-progress-text {
+  font-size: 13px;
+  color: #f8fafc;
+  margin-bottom: 6px;
+}
+
+.batch-progress-bar {
+  height: 8px;
+  border-radius: 999px;
+  background: #1e293b;
+  overflow: hidden;
+}
+
+.batch-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #0d9488;
+  border-radius: 999px;
+}
+
+.batch-progress-actions {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+}
+
+@media (max-width: 480px) {
+  .glossary-add {
+    flex-direction: column;
+  }
+
+  .glossary-add .btn-small {
+    align-self: flex-start;
+  }
+}
+
+/* U6: bang tien do theo file */
+.file-progress-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.file-progress-row {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  text-align: left;
+  background: #0b0f19;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+  color: #f8fafc;
+  font-family: inherit;
+  width: 100%;
+}
+
+.file-progress-row:hover {
+  border-color: #0d9488;
+}
+
+.file-progress-name {
+  font-size: 14px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.file-progress-bar {
+  display: block;
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: #1e293b;
+  overflow: hidden;
+}
+
+.file-progress-fill {
+  display: block;
+  height: 100%;
+  background: #0d9488;
+  border-radius: 999px;
+}
+
+.file-progress-meta {
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+/* U8/U9: nut tren card + o sua OCR + modal Tim & thay */
+.card-actions {
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-ocr-edit,
+.btn-ocr-merge,
+.btn-ocr-save,
+.btn-ocr-split,
+.btn-ocr-cancel {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-muted-foreground);
+  min-height: 36px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.btn-ocr-edit:hover,
+.btn-ocr-merge:hover,
+.btn-ocr-save:hover,
+.btn-ocr-split:hover,
+.btn-ocr-cancel:hover {
+  border-color: var(--color-secondary);
+  color: var(--color-accent-text);
+}
+
+.ocr-edit-textarea {
+  width: 100%;
+  background: var(--color-muted);
+  border: 1px solid var(--color-border);
+  color: var(--color-foreground);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.ocr-edit-textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.35);
+  outline: none;
+}
+
+.ocr-edit-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}

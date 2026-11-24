@@ -10,8 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- PDF.js CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <!-- PDF.js tu host (U5, spec 002) — khong con phu thuoc CDN cdnjs -->
+  <script src="vendor/pdf.min.js"></script>
 
   <!-- Tesseract.js CDN (OCR, v3-ocr) - chi tai khi trang load, OCR chi chay khi bam nut -->
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.0/dist/tesseract.min.js"></script>
@@ -65,6 +65,11 @@
       </label>
       <input type="file" id="pdfFileInput" accept="application/pdf,image/*" style="display: none;">
 
+      <!-- File Progress Button -->
+      <button id="btnFileProgress" class="btn-icon" title="File đã dịch — tiến độ theo file" aria-label="File đã dịch">
+        <i class="fa-solid fa-list-check"></i>
+      </button>
+
       <!-- Settings / API Key Button -->
       <button id="btnSettings" class="btn-icon" title="Cấu hình API Engine" aria-label="Cấu hình API Engine">
         <i class="fa-solid fa-gear"></i>
@@ -87,6 +92,7 @@
           <span>Hoặc</span>
           <button id="btnLoadSample" class="btn-link">Tải PDF Mẫu để dùng thử</button>
         </div>
+        <p id="migrateNote" class="migrate-note hidden"></p>
       </div>
     </div>
 
@@ -123,11 +129,22 @@
             <h3><i class="fa-solid fa-language" aria-hidden="true"></i> Bản dịch (Tiếng Việt)</h3>
           <div class="pane-header-actions">
             <button id="btnTranslateAll" class="btn-small"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> Dịch trang này</button>
+            <button id="btnTranslateDoc" class="btn-small"><i class="fa-solid fa-book-open" aria-hidden="true"></i> Dịch hết</button>
             <button id="btnOcrPage" class="btn-small" title="Nhận dạng chữ (OCR) trên trang/ảnh hiện tại — dùng cho PDF scan và ảnh"><i class="fa-solid fa-eye" aria-hidden="true"></i> Quét OCR trang này</button>
             <button id="btnToggleScanFx" class="btn-small" title="Bật/tắt hiệu ứng quét trang (scan)" aria-pressed="true"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> Scan: Bật</button>
             <button id="btnExportMd" class="btn-small" title="Xuất toàn bộ bản dịch đã lưu ra file Markdown"><i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> Xuất .md</button>
             <button id="btnExportJson" class="btn-small" title="Xuất toàn bộ bản dịch đã lưu ra file JSON"><i class="fa-solid fa-file-code" aria-hidden="true"></i> Xuất .json</button>
+            <button id="btnExportDocx" class="btn-small" title="Xuất toàn bộ bản dịch đã lưu ra file Word (.docx, khổ A4)"><i class="fa-solid fa-file-word" aria-hidden="true"></i> Xuất .docx</button>
+            <button id="btnFindReplace" class="btn-small" title="Tìm & thay trong toàn bộ bản dịch đã lưu của file này"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> Tìm & thay</button>
           </div>
+          </div>
+          <div id="batchProgress" class="batch-progress hidden">
+            <div class="batch-progress-text" id="batchProgressText">Đang dịch…</div>
+            <div class="batch-progress-bar"><div class="batch-progress-fill" id="batchProgressFill"></div></div>
+            <div class="batch-progress-actions">
+              <button id="btnBatchPause" class="btn-small" type="button">Tạm dừng</button>
+              <button id="btnBatchStop" class="btn-small" type="button">Dừng hẳn</button>
+            </div>
           </div>
           <div class="pane-content" id="translationPanel">
             <div class="empty-translation-state">
@@ -173,6 +190,7 @@
           <label for="engineSelect">Chọn Engine dịch:</label>
           <select id="engineSelect" class="form-control">
             <option value="google">Google Translate Free (Miễn phí / Tốc độ cao)</option>
+            <option value="mymemory">MyMemory Free (Miễn phí / dự phòng — có hạn mức ngày)</option>
             <option value="gemini">Google Gemini AI (Dịch tự nhiên theo ngữ cảnh)</option>
           </select>
         </div>
@@ -181,6 +199,23 @@
           <label for="geminiApiKey">Gemini API Key:</label>
           <input type="password" id="geminiApiKey" class="form-control" placeholder="Nhập API Key của bạn (AI Studio)">
           <small class="help-text">Lấy key miễn phí tại Google AI Studio. Key lưu trực tiếp trong trình duyệt.</small>
+          <small id="geminiModelInfo" class="help-text">Model đang dùng: gemini-3.8-flash</small>
+        </div>
+
+        <div class="form-group">
+          <label>Thuật ngữ (theo sách — áp dụng khi dịch):</label>
+          <div id="glossaryList" class="glossary-list"></div>
+          <div class="glossary-add">
+            <input id="glossaryEn" class="form-control" placeholder="Tiếng Anh, vd. mindfulness" aria-label="Thuật ngữ tiếng Anh">
+            <input id="glossaryVi" class="form-control" placeholder="Tiếng Việt, vd. chánh niệm" aria-label="Bản dịch tiếng Việt đã chốt">
+            <button id="btnGlossaryAdd" class="btn-small" type="button">Thêm</button>
+          </div>
+          <div class="glossary-actions">
+            <button id="btnGlossaryExport" class="btn-small" type="button"><i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i> Xuất .json</button>
+            <button id="btnGlossaryImport" class="btn-small" type="button"><i class="fa-solid fa-file-arrow-up" aria-hidden="true"></i> Nhập .json</button>
+            <input type="file" id="glossaryFileInput" accept="application/json,.json" style="display: none;">
+          </div>
+          <small class="help-text">Từ thêm vào sẽ áp dụng cho mọi đoạn dịch sau đó. Sửa/xóa thì dịch lại đoạn đó mới đổi.</small>
         </div>
       </div>
       <div class="modal-footer">
@@ -189,9 +224,50 @@
     </div>
   </div>
 
+  <!-- File Progress Modal (U6) -->
+  <div id="fileProgressModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="fileProgressTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="fileProgressTitle"><i class="fa-solid fa-list-check" aria-hidden="true"></i> File đã dịch</h3>
+        <button id="btnCloseFileProgress" class="btn-icon-plain" aria-label="Đóng danh sách file"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <p class="help-text">Bấm vào 1 file để mở lại — trình duyệt sẽ hỏi chọn lại file đó trên máy.</p>
+        <div id="fileProgressList" class="file-progress-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Find & Replace Modal (U9) -->
+  <div id="findReplaceModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="findReplaceTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="findReplaceTitle"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> Tìm & thay trong bản dịch</h3>
+        <button id="btnCloseFindReplace" class="btn-icon-plain" aria-label="Đóng tìm và thay"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <p class="help-text">Tìm trong toàn bộ bản dịch đã lưu của file này (mọi trang). Đoạn nào bị thay sẽ bỏ trạng thái duyệt để duyệt lại.</p>
+        <label for="findInput">Tìm:</label>
+        <input id="findInput" class="form-control" type="text" placeholder="Từ cần tìm trong bản dịch…">
+        <label for="replaceInput">Thay bằng:</label>
+        <input id="replaceInput" class="form-control" type="text" placeholder="Từ thay thế (để trống = xóa)">
+        <p id="findReplaceCount" class="help-text"></p>
+        <div class="modal-actions">
+          <button id="btnReplaceAll" class="btn-primary" type="button" disabled>Thay tất cả</button>
+        </div>
+        <p id="findReplaceResult" class="help-text"></p>
+      </div>
+    </div>
+  </div>
+
   <!-- Scripts -->
+  <script src="src/js/store-idb.js"></script>
+  <script src="src/js/file-progress.js"></script>
+  <script src="src/js/ocr-edit.js"></script>
+  <script src="src/js/glossary.js"></script>
   <script src="src/js/pdf-viewer.js"></script>
   <script src="src/js/translator.js"></script>
+  <script src="src/js/docx-export.js"></script>
   <script src="src/js/app.js"></script>
 </body>
 </html>

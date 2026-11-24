@@ -21,7 +21,7 @@
 
 // Configure Worker
 if (typeof pdfjsLib !== 'undefined') {
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'vendor/pdf.worker.min.js'; // U5: tu host, khong dung CDN
 }
 
 class PDFViewerController {
@@ -390,11 +390,14 @@ class PDFViewerController {
 
   async getPageTextBlocksWithBoxes(pageNo) {
     // Anh: chi co text sau khi OCR
-    if (this.docType === 'image') return this.ocrParagraphs[pageNo] || [];
+    if (this.docType === 'image') {
+      return (this.ocrParagraphs[pageNo] || []).map(p => ({ ...p, source: 'ocr' }));
+    }
     // PDF co text: dung text layer; PDF scan: dung ket qua OCR neu co
     const paras = await this._getPageParagraphs(pageNo);
-    if (paras.length) return paras;
-    return this.ocrParagraphs[pageNo] || [];
+    if (paras.length) return paras.map(p => ({ ...p, source: 'pdf' }));
+    // U8: danh dau doan OCR de app.js biet hien nut Sua/Tach/Gop
+    return (this.ocrParagraphs[pageNo] || []).map(p => ({ ...p, source: 'ocr' }));
   }
 
   // OCR co ket qua cho trang nay chua? (de app.js biet co nen hien nut OCR)
